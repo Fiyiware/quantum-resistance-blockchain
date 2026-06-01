@@ -1,0 +1,14 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Read CONTRIBUTING.md first
+    url: https://github.com/Fiyiware/quantum-resistance-blockchain/blob/main/CONTRIBUTING.md
+    about: How to contribute today, conventions, review process, compensation honesty.
+  - name: Considering joining beyond a one-off PR?
+    url: https://github.com/Fiyiware/quantum-resistance-blockchain/blob/main/JOIN.md
+    about: Paid Phase 1 lead, technical co-founder, advisor — read JOIN.md and email qrb.grants@proton.me.
+  - name: Strategy or roadmap question
+    url: https://github.com/Fiyiware/quantum-resistance-blockchain/discussions
+    about: Use Discussions for open-ended conversation that isn't a bug or a concrete contribution.
+  - name: Quick public ping
+    url: https://x.com/QRB_PQ
+    about: Lowest-friction channel, but slow for anything substantial. Prefer Issues or email.

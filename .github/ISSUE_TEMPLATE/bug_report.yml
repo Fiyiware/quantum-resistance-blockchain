@@ -1,0 +1,72 @@
+name: Bug report
+description: Something in the prototype, CLI, tests or CI is broken.
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for filing a bug. Please fill out the sections below so I can reproduce it. If you can attach a failing test, that's the fastest path to a fix.
+
+  - type: input
+    id: summary
+    attributes:
+      label: One-line summary
+      placeholder: "CLI `chain mine` crashes when mempool is empty"
+    validations:
+      required: true
+
+  - type: textarea
+    id: repro
+    attributes:
+      label: Steps to reproduce
+      description: Exact commands you ran, in order. Use a fenced code block.
+      placeholder: |
+        ```
+        python qrb_cli.py wallet create --name founder
+        python qrb_cli.py chain init --founder founder --supply 1000000000
+        python qrb_cli.py chain mine --proposer founder
+        ```
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior + full output
+      description: Paste the full traceback or output. Don't trim it.
+      render: shell
+    validations:
+      required: true
+
+  - type: input
+    id: python
+    attributes:
+      label: Python version
+      placeholder: "3.11.7"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: os
+    attributes:
+      label: OS
+      options:
+        - Windows
+        - macOS
+        - Linux
+        - Other (specify in additional context)
+    validations:
+      required: true
+
+  - type: textarea
+    id: extra
+    attributes:
+      label: Anything else
+      description: Did you try a workaround? Does the bug happen on a clean clone? Anything weird about your environment?

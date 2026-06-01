@@ -1,0 +1,45 @@
+name: Whitepaper or strategic feedback
+description: A claim in the whitepaper or README that you think is wrong, weak, or missing.
+labels: ["feedback"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Substantive critique is the most valuable thing this project can receive in Phase 0. The first external reviewer is in the README's Acknowledgments — that critique directly produced the Status table, the proposer-impersonation regression test, and CI. Don't hold back.
+
+  - type: input
+    id: location
+    attributes:
+      label: Where exactly?
+      description: Whitepaper section / README section / file:line. Be specific.
+      placeholder: "whitepaper-v0.2.md §4.6 (QKD), or README.md 'What QRB aims to combine' table"
+    validations:
+      required: true
+
+  - type: textarea
+    id: claim
+    attributes:
+      label: What does the document currently say?
+      description: Paste the exact sentence or claim you're pushing back on.
+    validations:
+      required: true
+
+  - type: textarea
+    id: critique
+    attributes:
+      label: What's wrong with it, in your view?
+      description: A citation, a counter-example, a known result that contradicts it, or just "this is overclaimed and here's why".
+    validations:
+      required: true
+
+  - type: textarea
+    id: suggestion
+    attributes:
+      label: What would you change it to? (optional)
+      description: Proposed wording, or "I don't know what it should say, but it shouldn't say this".
+
+  - type: textarea
+    id: reference
+    attributes:
+      label: References
+      description: Papers, posts, standards documents that back your critique. Links are fine.

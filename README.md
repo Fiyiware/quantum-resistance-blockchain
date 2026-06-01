@@ -173,7 +173,10 @@ QRB is actively recruiting for Phase 0 and early Phase 1:
 
 Phase 1 contributions are **paid work, funded by grants** (see the roadmap and the NLNet application track) — not unpaid token promises. QRB does not offer token allocations in exchange for contributions today. Any future token-based recognition would be decided only after a product exists and a MiCA-compliant token process is in place; it is explicitly out of scope for Phases 0 and 1.
 
-Interested? Open an issue, send a pull request, or DM [@QRB_PQ on X](https://x.com/QRB_PQ).
+**Two doors, depending on what you want:**
+
+- 👉 **[`CONTRIBUTING.md`](CONTRIBUTING.md)** — if you want to send a PR, file a bug, pick up a `good-first-issue`, or push back on the whitepaper. Conventions, review process, and an honest compensation section.
+- 👉 **[`JOIN.md`](JOIN.md)** — if you're weighing a paid Phase 1 lead, a co-founder track, or something larger than a one-off PR. Concrete profiles wanted, what "joining" can look like, and how to reach me privately.
 
 ---
 

@@ -1,0 +1,49 @@
+name: I want to contribute
+description: You've read CONTRIBUTING.md and want to pick something up. Tell me what.
+labels: ["help-wanted"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Welcome. Before filing this, please read [CONTRIBUTING.md](https://github.com/Fiyiware/quantum-resistance-blockchain/blob/main/CONTRIBUTING.md) — it explains where the project is honestly today, including compensation (free in Phase 0, paid in Phase 1 contingent on the NLNet grant).
+
+        If you're considering more than a one-off PR (paid lead, co-founder track), [JOIN.md](https://github.com/Fiyiware/quantum-resistance-blockchain/blob/main/JOIN.md) is the right starting point instead.
+
+  - type: dropdown
+    id: track
+    attributes:
+      label: What track interests you?
+      options:
+        - Pick up a good-first-issue
+        - Whitepaper feedback / critique
+        - Prototype: tests, bug hunting, regressions
+        - Prototype: a feature I want to propose (describe below)
+        - Documentation / translation (Spanish → English or other)
+        - Rust / Reth fork work (Phase 1 prep — coordinate before starting)
+        - Cryptography review (ML-DSA parameters, STARK direction)
+        - Other (describe below)
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: What specifically do you want to do?
+      description: One paragraph is fine. If you have a specific issue in mind, link it.
+    validations:
+      required: true
+
+  - type: input
+    id: link
+    attributes:
+      label: One link that shows your relevant background
+      description: GitHub profile, paper, previous project, LinkedIn. One link.
+      placeholder: "https://github.com/your-handle"
+
+  - type: textarea
+    id: time
+    attributes:
+      label: Time horizon
+      description: One-off PR this weekend? A few hours per week? Looking for paid work in Phase 1? Be honest — it changes how I prioritize.
+    validations:
+      required: true
