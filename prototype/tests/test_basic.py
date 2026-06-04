@@ -238,7 +238,7 @@ def test_load_json_corrupt_file_names_the_file():
             load_json(tmp)
             raise AssertionError("ValueError not raised")
         except ValueError as exc:
-            assert str(tmp) in str(exc.value), f"path {tmp} not in error: {exc.value}"
+            assert str(tmp) in str(exc), f"path {tmp} not in error: {exc}"
     finally:
         tmp.unlink(missing_ok=True)
 
