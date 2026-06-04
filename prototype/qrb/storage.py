@@ -6,6 +6,7 @@ puedas inspeccionar fácilmente los archivos generados.
 """
 
 import json
+import sys
 from pathlib import Path
 from typing import Any
 
@@ -16,18 +17,12 @@ def save_json(path: Path, data: Any) -> None:
 
 
 def load_json(path: Path) -> Any:
-    """Load JSON data from a file with a friendly error message on corruption."""
+    """Load JSON data from a file, raising a clear error if corrupt."""
     try:
         return json.loads(path.read_text())
     except (json.JSONDecodeError, OSError) as exc:
-        print(
-            f"ERROR: Could not read or parse {path}. "
-            f"The file may be corrupted (e.g. the process was killed mid-write, "
-            f"or the JSON was hand-edited incorrectly).
-"
-            f"Try deleting or repairing the file, then run the command again.
-"
-            f"Details: {exc}",
-            file=__import__("sys").stderr,
-        )
-        raise SystemExit(1)
+        raise ValueError(
+            f"could not read or parse {path} -- the file may be corrupt "
+            f"(killed mid-write, or hand-edited). Try deleting or repairing it. "
+            f"Details: {exc}"
+        ) from exc
