@@ -227,3 +227,29 @@ def run_all() -> None:
 if __name__ == "__main__":
     print("Ejecutando tests del prototipo QRB:\n")
     run_all()
+
+def test_load_json_corrupt_file_names_the_file():
+    """load_json should raise ValueError with the file path on corrupt JSON."""
+    from qrb.storage import load_json
+    tmp = Path("test_corrupt.json")
+    try:
+        tmp.write_text("{bad: json}")
+        try:
+            load_json(tmp)
+            raise AssertionError("ValueError not raised")
+        except ValueError as exc:
+            assert str(tmp) in str(exc.value), f"path {tmp} not in error: {exc.value}"
+    finally:
+        tmp.unlink(missing_ok=True)
+
+
+def test_load_json_valid_file():
+    """load_json should return parsed data on valid JSON."""
+    from qrb.storage import load_json
+    tmp = Path("test_valid.json")
+    try:
+        tmp.write_text('{"hello": "world"}')
+        result = load_json(tmp)
+        assert result == {"hello": "world"}
+    finally:
+        tmp.unlink(missing_ok=True)
