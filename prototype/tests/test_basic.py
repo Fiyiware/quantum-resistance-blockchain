@@ -275,6 +275,32 @@ def test_apply_transaction_rejects_zero_amount() -> None:
     except ValueError as exc:
         assert "positivo" in str(exc), f"rechazado por otra razón: {exc}"
 
+def test_replay_protection_rejects_replayed_transaction() -> None:
+    sender = Wallet.create("sender")
+    recipient = Wallet.create("recipient")
+
+    state = WorldState()
+    state.credit(sender.address, 1000)
+
+    tx = Transaction(
+        sender=sender.address,
+        recipient=recipient.address,
+        amount=100,
+        nonce=0,
+    )
+
+    tx.sign_with(sender.public_key, sender.private_key)
+
+    # First application should succeed
+    state.apply_transaction(tx)
+
+    # Second should fail (replay)
+    try:
+        state.apply_transaction(tx)
+        raise AssertionError("replayed transaction was not rejected")
+    except ValueError as exc:
+        assert "Nonce" in str(exc)
+
 
 def run_all() -> None:
     tests = [
@@ -289,6 +315,7 @@ def run_all() -> None:
         test_load_json_valid_file,
         test_apply_transaction_rejects_negative_amount,
         test_apply_transaction_rejects_zero_amount,
+        test_replay_protection_rejects_replayed_transaction,
     ]
     for t in tests:
         print(f"  -> {t.__name__} ... ", end="", flush=True)
