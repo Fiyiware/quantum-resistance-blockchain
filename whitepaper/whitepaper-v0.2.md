@@ -391,6 +391,8 @@ Las pruebas STARK son intensivas en cómputo. El usuario pagará un múltiplo de
 
 Cualquier contribuidor significativo recibe asignación de la categoría "Ecosistema" en términos a definir con la Fundación.
 
+El proyecto es de fundador único *por diseño* en la Fase 0, pero ya no de una sola *persona* en la práctica: a junio de 2026 ya ha recibido contribuciones externas fusionadas (tests de regresión, correcciones) de desarrolladores independientes — ver el grafo de contribuidores del repositorio. Convertir esa base de contribuidores en un equipo permanente de Fase 1 es justamente el propósito del grant y de la búsqueda anterior.
+
 ---
 
 ## 10. Financiación
