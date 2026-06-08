@@ -136,7 +136,7 @@ python qrb_cli.py wallet balance --name alice
 python qrb_cli.py chain block --index 1
 ```
 
-Blocks and state are persisted as JSON in `.qrb-data/` — open the files to inspect real ML-DSA-65 signatures (~3.3 KB each) and how they compose into a chain.
+Blocks and state are persisted as JSON in `.qrb-data/` — open the files to inspect real ML-DSA-65 signatures (~3.3 KB each) and how they compose into a chain. That ~3.3 KB per signature is roughly 50× the size of an ECDSA signature and is a **real throughput and storage cost** for an L2 — managing it (via Account Abstraction, efficient data availability, and signature aggregation) is an explicit design concern, not an afterthought; see whitepaper §3.1 and §3.3.
 
 See [`prototype/README.md`](prototype/README.md) for full prototype documentation.
 
@@ -175,6 +175,8 @@ QRB is actively recruiting for Phase 0 and early Phase 1:
 - **1 cryptographer or PhD student** with lattice / Dilithium / STARK expertise.
 - **1 frontend developer** for wallet and block explorer.
 - **1 technical writer / communicator** (Spanish/English).
+
+**The community has already started building, too:** independent developers have landed merged PRs (regression tests, bug fixes) — see the [contributor graph](https://github.com/Fiyiware/quantum-resistance-blockchain/graphs/contributors). Open issues are labelled [`good-first-issue`](https://github.com/Fiyiware/quantum-resistance-blockchain/labels/good-first-issue) and [`help-wanted`](https://github.com/Fiyiware/quantum-resistance-blockchain/labels/help-wanted).
 
 Phase 1 contributions are **paid work, funded by grants** (see the roadmap and the NLNet application track) — not unpaid token promises. QRB does not offer token allocations in exchange for contributions today. Any future token-based recognition would be decided only after a product exists and a MiCA-compliant token process is in place; it is explicitly out of scope for Phases 0 and 1.
 

@@ -388,6 +388,8 @@ STARK proofs are compute-intensive. The user will pay a gas multiple (~10–50×
 
 Any significant contributor receives an allocation from the "Ecosystem" category on terms to be defined with the Foundation.
 
+The project is single-founder *by design* at Phase 0, but no longer single-*person* in practice: as of June 2026 it has already received merged external contributions (regression tests, bug fixes) from independent developers — see the repository's contributor graph. Growing that contributor base into a permanent Phase 1 team is the explicit purpose of the grant and the recruitment above.
+
 ---
 
 ## 10. Funding
