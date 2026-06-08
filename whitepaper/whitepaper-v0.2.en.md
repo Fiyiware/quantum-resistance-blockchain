@@ -95,7 +95,7 @@ Timelines published by serious actors:
 
 Blockchain transactions are **public and permanent**. An ECDSA signature issued today will remain available for retrospective attack once a cryptographically relevant quantum computer (CRQC) exists. Addresses that have already spent have their public key exposed on-chain forever.
 
-- In Bitcoin, **approximately 6.9 million BTC** (≈ a third of the total supply) sit in addresses with an exposed public key, including the estimated one million belonging to Satoshi Nakamoto himself.
+- In Bitcoin, **approximately 6.9 million BTC** (≈ a third of the total supply) sit in addresses with an exposed public key, including the estimated one million belonging to Satoshi Nakamoto himself. A caveat: estimates of how much is *immediately exploitable* vary — for example, CoinShares argues for a much smaller subset (on the order of 10,000 BTC in legacy P2PK addresses) — but the exposed-key surface grows over time as addresses are reused. What matters is the direction of the curve, not the exact figure.
 - In Ethereum, the situation is similar for any account that has sent at least one transaction.
 - The **encrypted communications** of 99% of internet traffic (TLS over elliptic curves) are being actively stored by state actors with long-term intelligence incentives.
 

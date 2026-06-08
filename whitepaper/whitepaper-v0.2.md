@@ -95,7 +95,7 @@ Plazos publicados por actores serios:
 
 Las transacciones blockchain son **públicas y permanentes**. Una firma ECDSA emitida hoy quedará disponible para ataque retrospectivo cuando exista un ordenador cuántico criptográficamente relevante (CRQC). Las direcciones de las que ya se ha gastado tienen su clave pública expuesta en la cadena para siempre.
 
-- En Bitcoin, **aproximadamente 6,9 millones de BTC** (≈ un tercio del suministro total) están en direcciones con clave pública expuesta, incluyendo el millón estimado del propio Satoshi Nakamoto.
+- En Bitcoin, **aproximadamente 6,9 millones de BTC** (≈ un tercio del suministro total) están en direcciones con clave pública expuesta, incluyendo el millón estimado del propio Satoshi Nakamoto. Conviene matizar: las estimaciones de cuánto es *explotable de inmediato* varían — por ejemplo, CoinShares defiende un subconjunto mucho menor (del orden de 10.000 BTC en direcciones legacy P2PK) — pero la superficie de claves expuestas crece con el tiempo a medida que se reutilizan direcciones. Lo relevante es la dirección de la curva, no la cifra exacta.
 - En Ethereum, la situación es similar para toda cuenta que haya enviado al menos una transacción.
 - Las **comunicaciones cifradas** del 99% del tráfico de internet (TLS sobre curvas elípticas) están siendo activamente almacenadas por actores estatales con incentivos de inteligencia a largo plazo.
 
