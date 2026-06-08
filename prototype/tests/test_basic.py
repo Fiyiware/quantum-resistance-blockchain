@@ -302,6 +302,81 @@ def test_replay_protection_rejects_replayed_transaction() -> None:
         assert "Nonce" in str(exc)
 
 
+def test_future_nonce_rejected_in_mempool() -> None:
+    """Una transacción firmada con un nonce adelantado (p.ej. nonce=5
+    cuando el emisor espera nonce=0) debe ser rechazada por
+    add_to_mempool con ValueError. Regresión del issue #24.
+    """
+    with tempfile.TemporaryDirectory() as tmp:
+        data_dir = Path(tmp)
+        wallets_dir = data_dir / "wallets"
+        founder = Wallet.create("founder")
+        founder.save(wallets_dir)
+
+        chain = Chain(data_dir)
+        chain.init_genesis(founder.address, 1_000)
+
+        tx = Transaction(
+            sender=founder.address,
+            recipient="0x" + "ab" * 20,
+            amount=100,
+            nonce=5,  # nonce adelantado — el esperado es 0
+        )
+        tx.sign_with(founder.public_key, founder.private_key)
+        try:
+            chain.add_to_mempool(tx)
+            raise AssertionError("nonce adelantado no rechazado")
+        except ValueError:
+            pass  # esperado
+        assert len(chain.mempool) == 0, "tx con nonce adelantado entró al mempool"
+
+
+def test_unfunded_sender_rejected_in_mempool() -> None:
+    """Una transacción firmada desde una dirección sin fondos debe ser
+    rechazada por add_to_mempool con ValueError. Regresión del issue #24.
+    """
+    unfunded = Wallet.create("unfunded")
+    recipient = Wallet.create("recipient")
+
+    with tempfile.TemporaryDirectory() as tmp:
+        data_dir = Path(tmp)
+        wallets_dir = data_dir / "wallets"
+        founder = Wallet.create("founder")
+        founder.save(wallets_dir)
+
+        chain = Chain(data_dir)
+        chain.init_genesis(founder.address, 1_000)
+
+        tx = Transaction(
+            sender=unfunded.address,
+            recipient=recipient.address,
+            amount=100,
+            nonce=0,
+        )
+        tx.sign_with(unfunded.public_key, unfunded.private_key)
+        try:
+            chain.add_to_mempool(tx)
+            raise AssertionError("emisor sin fondos no rechazado")
+        except ValueError:
+            pass  # esperado
+        assert len(chain.mempool) == 0, "tx de emisor sin fondos entró al mempool"
+
+
+def test_get_block_nonexistent_index_returns_none() -> None:
+    """Chain.get_block debe devolver None para índices que no existen
+    (índice muy alto o negativo), no devolver el bloque incorrecto.
+    Regresión del issue #24.
+    """
+    with tempfile.TemporaryDirectory() as tmp:
+        data_dir = Path(tmp)
+        founder = Wallet.create("founder")
+        chain = Chain(data_dir)
+        chain.init_genesis(founder.address, 1_000)
+
+        assert chain.get_block(99) is None, "índice alto debe devolver None"
+        assert chain.get_block(-1) is None, "índice negativo debe devolver None"
+
+
 def run_all() -> None:
     tests = [
         test_dilithium_sign_verify,
@@ -316,6 +391,9 @@ def run_all() -> None:
         test_apply_transaction_rejects_negative_amount,
         test_apply_transaction_rejects_zero_amount,
         test_replay_protection_rejects_replayed_transaction,
+        test_future_nonce_rejected_in_mempool,
+        test_unfunded_sender_rejected_in_mempool,
+        test_get_block_nonexistent_index_returns_none,
     ]
     for t in tests:
         print(f"  -> {t.__name__} ... ", end="", flush=True)
