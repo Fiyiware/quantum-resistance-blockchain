@@ -70,15 +70,15 @@ La industria post-cuántica actual cubre fundamentalmente la **Amenaza A** (firm
 
 ### 1.2 La línea temporal se ha contraído
 
-| Año | Estimación de qubits **lógicos / con corrección de errores** para romper ECDSA-256 | Fuente |
+| Año | Estimación de qubits para romper RSA-2048 / ECC-256 | Fuente |
 |-----|---------------------------------------------|--------|
-| 2012 | ~1.000 millones (físicos) | Estimaciones académicas |
-| 2019 | ~20 millones (físicos) | Google Research |
+| 2012 | ~1.000 millones (físicos, estimaciones era RSA-2048) | Estimaciones académicas |
+| 2019 | ~20 millones (físicos, RSA-2048) | Gidney y Ekerå (Google) |
 | Mayo 2025 | ~1 millón (físicos) | Google Research (revisión) |
 | Marzo 2026 | **< 500.000** (físicos) | Google Quantum AI |
 | Marzo 2026 | **~10.000** (lógicos, arquitectura atómica) | Caltech + Atomic |
 
-> **Aviso metodológico — no confundir qubits físicos con lógicos.** Las cifras de la tabla son mayoritariamente *qubits lógicos con corrección de errores* (o estimaciones de físicos bajo arquitecturas concretas). Un qubit lógico tolerante a fallos requiere hoy **del orden de cientos a miles de qubits físicos** para su corrección de errores. En contraste, los ordenadores comerciales actuales (IBM, Google, Quantinuum, IonQ) tienen **1.000-2.000 qubits *físicos* ruidosos**, sin la corrección de errores necesaria para ejecutar el algoritmo de Shor a esta escala. Por tanto, la brecha real entre lo disponible hoy y lo necesario es **mucho mayor** de lo que sugiere comparar los números en bruto, y el coste de romper claves más grandes no escala de forma lineal.
+> **Aviso metodológico — estas cifras no son comparables entre sí.** Mezclan *objetivos* (factorizar RSA-2048 vs logaritmo discreto en ECC-256 — la cifra de 2019, por ejemplo, es la estimación de Gidney y Ekerå para **factorizar RSA-2048**, no para romper ECC) y *tipos de qubit* (físicos ruidosos vs lógicos con corrección de errores). Un qubit lógico tolerante a fallos requiere hoy **del orden de cientos a miles de qubits físicos**; los ordenadores comerciales actuales (IBM, Google, Quantinuum, IonQ) tienen **1.000-2.000 qubits *físicos* ruidosos**, sin esa corrección de errores. Por tanto, la brecha real entre lo disponible hoy y lo necesario es **mucho mayor** de lo que sugiere comparar los números en bruto, y el coste de romper claves más grandes no escala de forma lineal. Lo relevante de la tabla es la **tendencia descendente en los recursos estimados**, no ninguna cifra comparable concreta.
 
 La tendencia de las estimaciones, no obstante, es inequívocamente descendente: varios órdenes de magnitud de reducción en los recursos estimados a lo largo de una década. **La fecha exacta de llegada de un ordenador cuántico criptográficamente relevante (CRQC) es genuinamente incierta**; lo que no es incierto es la dirección, ni el hecho de que la infraestructura criptográfica tarda años en migrarse. Esa asimetría — migración lenta frente a amenaza creciente — es la que justifica actuar ahora.
 
@@ -339,7 +339,7 @@ El importe de cada transacción va **cifrado** mediante un compromiso criptográ
 
 #### 7.5.3 ZK-proofs sobre STARKs (decisión técnica crítica)
 
-**SNARKs (Groth16, PLONK, BN254) NO son post-cuánticos** — sus parámetros descansan en suposiciones de curvas elípticas. Cualquier privacidad construida hoy con SNARKs es **falsa a largo plazo**: cosechan ahora, descifran después. Esta es la trampa silenciosa de los proyectos Aleo y Aztec, que ofrecen privacidad rota a futuro.
+**SNARKs (Groth16, PLONK, BN254) NO son post-cuánticos** — sus parámetros descansan en suposiciones de curvas elípticas. El riesgo exacto depende de la construcción: los compromisos *ocultadores* en sentido teórico-informacional (p.ej. Pedersen) **no** filtran el valor comprometido a un futuro ordenador cuántico — pero su *binding* puede romperse (permitiendo inflación indetectable), y cualquier payload cifrado con intercambio de claves elíptico (note encryption, ECDH de stealth addresses) **sí** es descifrable retroactivamente — *harvest now, decrypt later* real. En todo caso, la privacidad que descansa en suposiciones de curvas elípticas no aguanta a largo plazo. Es el riesgo subestimado de proyectos como Aleo y Aztec: su privacidad protege hoy, pero sobre supuestos que un CRQC rompe. Los STARKs lo evitan por completo porque solo dependen de la resistencia a colisiones de hash.
 
 **STARKs son nativamente post-cuánticos**: solo dependen de funciones hash colision-resistentes (modelable como oráculo aleatorio) y de códigos Reed-Solomon. Tamaño de prueba mayor (~50-200 KB hoy, en mejora rápida), pero seguridad sólida sobre las suposiciones más conservadoras conocidas.
 
