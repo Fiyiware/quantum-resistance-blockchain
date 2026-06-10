@@ -272,7 +272,7 @@ The six previously-open items have been decided by the founder:
 - **Founder identity**: ✅ Real name — **Luiggi Leonel Cedeño Bermeo**.
 - **Fiscal vehicle**: ✅ **Persona física** (natural person). Estonia OÜ / SL deferred until recurring revenue justifies the ~€1,000/yr overhead.
 - **Hourly rates**: ✅ **35 €/h** as the reference rate (some lines at 30/25 €/h for non-engineering work, per the budget table). Defensible against Spanish freelance norms without appearing inflated.
-- **External security review supplier**: ✅ **Least Authority** as the named candidate for the €8,000 line (best fit for ticket size and PQ-primitive scope). Paid from the grant, not founder funds.
+- **External security review supplier**: ✅ **Least Authority** as the named candidate for the €9,000 line (best fit for ticket size and PQ-primitive scope). Paid from the grant, not founder funds.
 - **Reference dApps**: ✅ **PQ wallet + PQ ERC-20 token + PQ multi-sig.**
 - **Correspondence email**: ✅ **qrb.grants@proton.me** (dedicated).
 
