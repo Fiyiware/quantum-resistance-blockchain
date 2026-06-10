@@ -112,7 +112,7 @@ Las firmas PQ son significativamente más grandes que ECDSA (Dilithium ~2,5 KB v
 
 La capa de ejecución de QRB es un *fork* del cliente Reth (Rust) o Geth (Go) modificado para:
 
-- Reemplazar el opcode de validación de firma ECRECOVER por DSARECOVER (validación ML-DSA) en transacciones nativas.
+- Reemplazar el opcode de validación de firma ECRECOVER por MLDSAVERIFY (validación ML-DSA) en transacciones nativas.
 - Añadir precompilados en `0x100`-`0x103` para ML-DSA-44, ML-DSA-65, ML-DSA-87 y FN-DSA-512 respectivamente.
 - Mantener todos los opcodes EVM estándar inalterados para que cualquier contrato Solidity existente compile y se ejecute sin cambios.
 - Mantener ECRECOVER funcional para *bridges* y compatibilidad histórica, pero marcado como obsoleto en herramientas oficiales.
@@ -145,7 +145,7 @@ A medio plazo (Fase 2+), se evaluará migración a un modelo **ZK-rollup** una v
                               │
 ┌─────────────────────────────────────────────────────────────┐
 │              Capa de Ejecución (EVM + Precompilados PQ)       │
-│  Reth fork · DSARECOVER · ML-DSA / FN-DSA / SLH-DSA precomps  │
+│  Reth fork · MLDSAVERIFY · ML-DSA / FN-DSA / SLH-DSA precomps  │
 └─────────────────────────────────────────────────────────────┘
                               │
 ┌─────────────────────────────────────────────────────────────┐

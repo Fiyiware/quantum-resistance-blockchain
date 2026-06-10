@@ -44,7 +44,7 @@ El test menciona la revisión externa de 30/05/2026 en su docstring.
 **8. "Construir una PoC más cerca de Ethereum: smart account PQ, verificador ML-DSA, integración mínima con OP Stack o Reth"** — De acuerdo, es exactamente el alcance de Fase 1. El whitepaper lo detalla en §3.3 (Account Abstraction PQ) y §3.5 (bridge sobre OP Stack). Plan operativo: aplicar a NLNet con presupuesto para 6 meses dedicados a:
 
 - Smart account contract en Solidity con verificador ML-DSA-65 como precompilado.
-- Devnet sobre fork de Reth con DSARECOVER en lugar de ECRECOVER.
+- Devnet sobre fork de Reth con MLDSAVERIFY en lugar de ECRECOVER.
 - Bridge mínimo bidireccional con Ethereum sepolia.
 
 Si tienes disposición a revisar la application a NLNet antes de enviarla, sería un input significativo.
