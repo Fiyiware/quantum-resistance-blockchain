@@ -169,7 +169,7 @@ Las firmas PQ son ~50× más grandes que ECDSA. Para evitar que esto degrade la 
 
 La capa de ejecución de QRB es un *fork* del cliente Reth (Rust) o Geth (Go) modificado para:
 
-- Reemplazar el opcode `ECRECOVER` por `DSARECOVER` en transacciones nativas.
+- Reemplazar el opcode `ECRECOVER` por `MLDSAVERIFY` en transacciones nativas. A diferencia de `ECRECOVER`, que *recupera* la clave pública del firmante a partir de la firma, ML-DSA no puede recuperar la clave — `MLDSAVERIFY` es `(mensaje, firma, clave pública) → bool`. Por eso la clave pública de ~1.952 bytes debe viajar con la transacción o vivir en el smart account del firmante: un coste real de disponibilidad de datos, hecho explícito en vez de ocultado.
 - Añadir precompilados en `0x100`-`0x103` para ML-DSA-44, ML-DSA-65, ML-DSA-87 y FN-DSA-512 respectivamente.
 - Mantener todos los demás opcodes EVM estándar inalterados — cualquier contrato Solidity compila sin cambios.
 - Mantener `ECRECOVER` funcional para bridges y compatibilidad histórica, marcado como obsoleto.
@@ -204,7 +204,7 @@ El bridge es el componente más crítico de seguridad de cualquier L2. QRB adopt
                               │
 ┌────────────────────────────────────────────────────────────────┐
 │           Capa de Ejecución (EVM + Precompilados PQ)             │
-│ Reth fork · DSARECOVER · ML-DSA / FN-DSA / SLH-DSA precompilados │
+│ Reth fork · MLDSAVERIFY · ML-DSA / FN-DSA / SLH-DSA precompilados │
 └────────────────────────────────────────────────────────────────┘
                               │
 ┌────────────────────────────────────────────────────────────────┐
@@ -429,6 +429,7 @@ QRB sigue una estrategia de financiación **escalonada y conservadora**, evitand
 |--------|:-------:|:------------:|------------|
 | Rotura criptoanalítica de ML-DSA | Catastrófico | Baja | Plan B preestablecido: migración a SLH-DSA. Diseño modular. |
 | Ethereum acelera su migración PQ y absorbe la propuesta de valor | Alto | Media | QRB se posiciona como espacio PQ-first mientras Ethereum migra (4-7 años). Cuando Ethereum migre, QRB pivota a especialización: privacidad PQ + QKD institucional. |
+| **La propia L1 de Ethereum cae ante un CRQC** (settlement, bridge y multisigs de upgrade usan ECDSA/BLS) | Catastrófico | Ligado a la llegada del CRQC | **Dependencia honesta, dicha sin rodeos:** como toda L2, QRB liquida en Ethereum y hereda sus supuestos criptográficos de L1. QRB protege la capa donde viven las claves de *usuario* y la lógica de contratos, y gana tiempo de migración — **no** hace, ni puede hacer, post-cuántica la L1 de Ethereum por sí solo. El bridge es el componente más expuesto a L1 (de ahí su tratamiento conservador como stretch goal). Si/cuando Ethereum migre su L1 (está en su roadmap), la dependencia se resuelve; hasta entonces, la protección de QRB es real pero acotada a la capa de ejecución/cuenta. |
 | No se obtienen grants en Fase 1 | Alto | Media-Baja | Estrategia paralela en 4-5 programas. Probabilidad combinada de obtener al menos uno: >75%. Si fallan todos, Fase 1 reducida con presupuesto propio. |
 | Cambios regulatorios MiCA endurecen requisitos | Medio | Alta | Asesoría legal continua. Modelo de token utility puro (no security). Disposición a registrar como CASP si fuera necesario. |
 | Bug crítico en el bridge | Catastrófico | Baja-Media | Auditorías múltiples antes de mainnet. Modo *withdrawal-only* de emergencia. Seguro de protocolo (Nexus Mutual o similar) para Fase 2+. |

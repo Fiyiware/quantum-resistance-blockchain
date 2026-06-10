@@ -24,7 +24,7 @@ This README is deliberately careful to distinguish **implemented**, **designed**
 | Account-based blockchain with signed blocks, transactions and state | ✅ Implemented | `prototype/qrb/` |
 | CLI for wallets, transactions, block production and inspection | ✅ Implemented | `prototype/qrb_cli.py` |
 | End-to-end tests (signatures, tampering, double-spend, proposer impersonation) | ✅ Implemented + CI | `prototype/tests/test_basic.py` |
-| EVM-compatible execution layer with DSARECOVER precompile | 📐 Designed | Whitepaper §3.4 |
+| EVM-compatible execution layer with MLDSAVERIFY precompile | 📐 Designed | Whitepaper §3.4 |
 | ERC-4337-like Account Abstraction with PQ signatures | 📐 Designed | Whitepaper §3.3 |
 | Optimistic rollup bridge to Ethereum L1 | 📐 Designed | Whitepaper §3.5 |
 | STARK-based confidentiality (stealth addresses, confidential tx, view keys) | 🔬 Research / Phase 3+ vision | Whitepaper §7.5 |
@@ -88,7 +88,7 @@ quantum-resistance-blockchain/
 │   ├── tests/                     End-to-end tests
 │   └── README.md                  Prototype setup and usage
 ├── poc/
-│   └── ml-dsa-precompile/         Rust PoC: ML-DSA-65 verification (DSARECOVER precompile core)
+│   └── ml-dsa-precompile/         Rust PoC: ML-DSA-65 verification (MLDSAVERIFY precompile core)
 ├── marketing/                     Public launch materials (X thread, launch kit)
 ├── .github/workflows/             Continuous integration (GitHub Actions)
 ├── resumen.md                     ~700-word pitch (Spanish)
@@ -147,7 +147,7 @@ See [`prototype/README.md`](prototype/README.md) for full prototype documentatio
 | Phase | Period | Deliverables | Funding |
 |-------|--------|--------------|---------|
 | **0 — Validation** | Q2-Q3 2026 | Whitepaper v0.2 · Python prototype with ML-DSA signatures · Public repo · CI · Initial community | Self-funded |
-| **1 — Public testnet** | Q4 2026 - Q3 2027 | Grants (NLNet, Ethereum Foundation, Optimism RetroPGF) · EVM execution layer · DSARECOVER precompile · ERC-4337-like AA with PQ · Devnet · Public testnet · SDK · 5-10 dApp demos · Optimistic rollup bridge | €100-250K (grants) |
+| **1 — Public testnet** | Q4 2026 - Q3 2027 | Grants (NLNet, Ethereum Foundation, Optimism RetroPGF) · EVM execution layer · MLDSAVERIFY precompile · ERC-4337-like AA with PQ · Devnet · Public testnet · SDK · 5-10 dApp demos · Optimistic rollup bridge | €100-250K (grants) |
 | **2 — Mainnet beta** | Q4 2027 - Q2 2028 | Audits · Production bridge · MiCA-registered token · DEX listings · 50+ contracts | €500K-2M (seed + token) |
 | **3 — GA + Privacy layer** | H2 2028 - 2030 | Sequencer decentralization · STARK confidentiality · Stealth addresses · QKD institutional pilots · Optimistic → ZK rollup migration | Self-sustaining via fees |
 

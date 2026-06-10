@@ -28,7 +28,7 @@ https://github.com/Fiyiware/quantum-resistance-blockchain
 
 ## 3. Abstract / one-paragraph summary (≤ ~1200 characters)
 
-QRB is an open-source research and prototype track for a post-quantum Layer 2 blockchain compatible with Ethereum. It addresses two distinct quantum threats to existing crypto infrastructure: (1) signature forgery via Shor's algorithm on ECDSA, which puts the ≈6.9 million BTC and the entire Ethereum state with exposed public keys at risk of impersonation; and (2) "harvest now, decrypt later" — the structural failure of today's privacy chains (Aleo, Aztec) whose SNARK-based proofs are themselves quantum-vulnerable. QRB's roadmap covers both: post-quantum authentication via NIST FIPS 204 ML-DSA-65, already implemented in the Phase 0 prototype; and a post-quantum confidentiality layer based on STARKs (hash-based, natively post-quantum) and lattice commitments, in Phase 3+ research. Fully EVM-compatible, with Account Abstraction PQ-native to absorb the larger signature footprint at the UX layer. NLNet funding would underwrite a focused Phase 1 core: an EVM client fork with an ML-DSA precompile (DSARECOVER), a PQ-native ERC-4337 smart account, a public devnet, and a JavaScript SDK with a reference PQ wallet — with an Ethereum-Sepolia bridge framed as a stretch goal rather than a payment-gated commitment.
+QRB is an open-source research and prototype track for a post-quantum Layer 2 blockchain compatible with Ethereum. It addresses two distinct quantum threats to existing crypto infrastructure: (1) signature forgery via Shor's algorithm on ECDSA, which puts millions of BTC (estimates of the immediately-exploitable subset vary) and the entire Ethereum state with exposed public keys at risk of impersonation; and (2) "harvest now, decrypt later" — the structural failure of today's privacy chains (Aleo, Aztec) whose SNARK-based proofs are themselves quantum-vulnerable. QRB's roadmap covers both: post-quantum authentication via NIST FIPS 204 ML-DSA-65, already implemented in the Phase 0 prototype; and a post-quantum confidentiality layer based on STARKs (hash-based, natively post-quantum) and lattice commitments, in Phase 3+ research. Fully EVM-compatible, with Account Abstraction PQ-native to absorb the larger signature footprint at the UX layer. NLNet funding would underwrite a focused Phase 1 core: an EVM client fork with an ML-DSA precompile (MLDSAVERIFY), a PQ-native ERC-4337 smart account, a public devnet, and a JavaScript SDK with a reference PQ wallet — with an Ethereum-Sepolia bridge framed as a stretch goal rather than a payment-gated commitment.
 
 ## 4. Have you been involved with the NGI initiative before?
 
@@ -78,7 +78,7 @@ QRB proposes a Layer 2 blockchain on Ethereum that addresses both threats cohere
   - **ZK proofs on STARKs** — critically, *not* SNARKs. STARKs depend only on hash collision resistance and are therefore natively post-quantum; SNARKs depend on elliptic-curve assumptions and break under Shor.
   - View keys for selective disclosure (MiCA / AML compliance).
 
-- **Ethereum compatibility**. EVM execution layer with `DSARECOVER` precompile alongside the legacy `ECRECOVER`; standard Solidity contracts compile without modification.
+- **Ethereum compatibility**. EVM execution layer with `MLDSAVERIFY` precompile alongside the legacy `ECRECOVER`; standard Solidity contracts compile without modification.
 
 - **Account Abstraction** (ERC-4337-like, PQ-native from day one): contractual wallets verify their own signatures, supporting key rotation, social recovery, paymasters and multisig PQ — and absorbing the larger PQ signature footprint at the application layer.
 
@@ -94,7 +94,7 @@ The Phase 0 deliverables are public and verifiable on the project repository, wi
 - Persistence in JSON for transparent inspection (`prototype/qrb/storage.py`).
 - CLI with create/list/balance/send/mine/show commands (`prototype/qrb_cli.py`).
 - End-to-end tests covering signature verification, tampering rejection, double-spend rejection, proposer impersonation rejection (`prototype/tests/test_basic.py`).
-- **Rust proof-of-concept of the `DSARECOVER` precompile core** (`poc/ml-dsa-precompile/`): ML-DSA-65 verification in Rust (via the `fips204` crate), rejecting tampered signatures/messages, with real sizes (1,952 / 4,032 / 3,309 bytes) and a verification benchmark (~200 µs/verify) — the direct starting point and gas-model input for Phase 1 deliverable 1.
+- **Rust proof-of-concept of the `MLDSAVERIFY` precompile core** (`poc/ml-dsa-precompile/`): ML-DSA-65 verification in Rust (via the `fips204` crate), rejecting tampered signatures/messages, with real sizes (1,952 / 4,032 / 3,309 bytes) and a verification benchmark (~200 µs/verify) — the direct starting point and gas-model input for Phase 1 deliverable 1.
 - 24-page whitepaper with full technical and economic specification (`whitepaper/whitepaper-v0.2.pdf`, plus an English version at `whitepaper/whitepaper-v0.2.en.md`).
 - Open source under a dual MIT / Apache-2.0 licence.
 
@@ -244,6 +244,8 @@ The NGI Zero Commons Fund's mission — funding research and development of free
 - Maintain MIT/Apache-2.0 licensing without dilution pressure from venture capital.
 - Prioritise long-term security and standards alignment over short-term token-launch incentives.
 - Build a public-good infrastructure layer rather than a proprietary product.
+
+**Reusable commons beyond QRB** (literally the point of this fund): the Phase 1 deliverables are not QRB-specific. The `MLDSAVERIFY` precompile is useful to *any* EVM chain or Reth-based client; a PQ-native ERC-4337 smart account is useful to Ethereum itself. We commit to upstreaming this work as public goods — proposing the precompile as an **EIP and/or a PR to the Reth project**, and coordinating with the **Ethereum Foundation's own post-quantum efforts** — so the output is shared infrastructure, not a walled garden. Even if QRB-the-L2 never reaches mainnet, a working, audited ML-DSA precompile and PQ smart account are durable commons.
 
 **European Dimension** (a hard eligibility criterion for the Commons Fund): the project is led from Spain (EU) by a natural person registered there; it targets compliance with EU regulation specifically (MiCA for any future token, NIS2 duty-of-care for critical infrastructure); and it builds on European open-source and research ecosystems (Ethereum, StarkWare, the EU's own QKD deployments). The infrastructure gap it closes is one that European regulated institutions will be required to address before 2030.
 

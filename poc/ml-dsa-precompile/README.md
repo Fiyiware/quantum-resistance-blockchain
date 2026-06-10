@@ -1,4 +1,4 @@
-# PoC — ML-DSA-65 verification (the core of the `DSARECOVER` precompile)
+# PoC — ML-DSA-65 verification (the core of the `MLDSAVERIFY` precompile)
 
 A minimal, honest proof-of-concept in **Rust** that demonstrates the cryptographic
 operation at the heart of QRB's planned EVM precompile: **verifying an ML-DSA-65

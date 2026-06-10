@@ -25,7 +25,7 @@ Not "Rust dev with X years of experience". I'm looking for one of these specific
 
 **The single highest-leverage hire for Phase 1.** Someone who has touched Geth, Reth, Erigon or similar at the consensus/execution boundary. The Phase 1 work that needs you specifically:
 
-- Fork Reth and add the `DSARECOVER` precompile (or equivalent) for ML-DSA signatures.
+- Fork Reth and add the `MLDSAVERIFY` precompile (or equivalent) for ML-DSA signatures.
 - Implement the rollup data-availability path against Ethereum L1.
 - Run a single-node devnet end-to-end before the NLNet milestone review.
 
