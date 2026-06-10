@@ -70,15 +70,15 @@ Today's post-quantum industry fundamentally covers **Threat A** (resistant signa
 
 ### 1.2 The timeline has contracted
 
-| Year | Estimated **logical / error-corrected** qubits to break ECDSA-256 | Source |
+| Year | Estimated qubits to break RSA-2048 / ECC-256 | Source |
 |-----|---------------------------------------------|--------|
-| 2012 | ~1 billion (physical) | Academic estimates |
-| 2019 | ~20 million (physical) | Google Research |
+| 2012 | ~1 billion (physical, RSA-2048-era estimates) | Academic estimates |
+| 2019 | ~20 million (physical, RSA-2048) | Gidney & Ekerå (Google) |
 | May 2025 | ~1 million (physical) | Google Research (revised) |
 | March 2026 | **< 500,000** (physical) | Google Quantum AI |
 | March 2026 | **~10,000** (logical, atomic architecture) | Caltech + Atomic |
 
-> **Methodological caveat — do not confuse physical qubits with logical ones.** The figures in the table are mostly *error-corrected logical qubits* (or physical-qubit estimates under specific architectures). A fault-tolerant logical qubit today requires **on the order of hundreds to thousands of physical qubits** for its error correction. By contrast, today's commercial computers (IBM, Google, Quantinuum, IonQ) have **1,000–2,000 noisy *physical* qubits**, without the error correction needed to run Shor's algorithm at this scale. So the real gap between what exists today and what is needed is **far larger** than a raw comparison of the numbers suggests, and the cost of breaking larger keys does not scale linearly.
+> **Methodological caveat — these numbers are not apples-to-apples.** They mix *targets* (RSA-2048 factoring vs ECC-256 discrete log — the 2019 figure, for instance, is Gidney & Ekerå's estimate for **factoring RSA-2048**, not breaking ECC) and *qubit types* (noisy physical vs error-corrected logical). A fault-tolerant logical qubit today requires **on the order of hundreds to thousands of physical qubits** for its error correction; today's commercial computers (IBM, Google, Quantinuum, IonQ) have **1,000–2,000 noisy *physical* qubits**, without that error correction. So the real gap between what exists today and what is needed is **far larger** than a raw comparison suggests, and the cost of breaking larger keys does not scale linearly. The point of the table is the **downward trend in estimated resources**, not any single comparable figure.
 
 The trend in the estimates, however, is unambiguously downward: several orders of magnitude of reduction in estimated resources over a decade. **The exact arrival date of a cryptographically relevant quantum computer (CRQC) is genuinely uncertain**; what is not uncertain is the direction, nor the fact that cryptographic infrastructure takes years to migrate. That asymmetry — slow migration versus a growing threat — is what justifies acting now.
 
@@ -336,7 +336,7 @@ The amount of each transaction is **encrypted** via a lattice-based cryptographi
 
 #### 7.5.3 ZK proofs on STARKs (a critical technical decision)
 
-**SNARKs (Groth16, PLONK, BN254) are NOT post-quantum** — their parameters rest on elliptic-curve assumptions. Any privacy built today with SNARKs is **broken at long horizons**: harvest now, decrypt later. This is the quiet trap of projects like Aleo and Aztec, whose privacy protects today but does not hold 30 years out.
+**SNARKs (Groth16, PLONK, BN254) are NOT post-quantum** — their parameters rest on elliptic-curve assumptions. The precise risk depends on the construction: information-theoretically *hiding* commitments (e.g. Pedersen) do **not** leak the committed value to a future quantum computer — but their *binding* can break (enabling undetectable inflation), and any payload encrypted with elliptic-curve key exchange (note encryption, stealth-address ECDH) **is** retroactively decryptable — genuine harvest-now-decrypt-later. Either way, privacy that rests on elliptic-curve assumptions does not hold at long horizons. This is the under-stated risk in projects like Aleo and Aztec: their privacy protects today, but on assumptions a CRQC breaks. STARKs avoid this entirely because they depend only on hash collision resistance.
 
 **STARKs are natively post-quantum**: they depend only on collision-resistant hash functions (modelable as a random oracle) and on Reed-Solomon codes. Larger proof size (~50–200 KB today, improving rapidly), but solid security under the most conservative known assumptions.
 

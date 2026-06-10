@@ -14,8 +14,17 @@ Compárese con ECDSA secp256k1 (Ethereum/Bitcoin):
   - Clave privada: 32 bytes
   - Firma:         64 bytes
 
-El precio de la resistencia cuántica es un factor ~50× en tamaño.
-QRB lo absorbe vía Account Abstraction y data availability eficiente.
+El precio de la resistencia cuántica es un factor ~50× en tamaño. Esos bytes
+van a la capa de disponibilidad de datos (DA) igualmente: la Account
+Abstraction mejora la UX y la rotación de claves, pero NO reduce ese coste.
+La palanca real para reducirlo es la verificación en lote / agregación dentro
+de pruebas STARK (visión Fase 3+).
+
+⚠️ Nota de implementación: `dilithium-py` es una implementación de REFERENCIA
+en Python puro, para claridad e inspección, NO para producción: no ofrece
+garantías de tiempo constante ni resistencia a side-channels. Para un
+precompilado de VERIFICACIÓN esto importa poco (todo es dato público); para
+FIRMAR en wallets de producción se usaría una implementación endurecida.
 """
 
 import hashlib
