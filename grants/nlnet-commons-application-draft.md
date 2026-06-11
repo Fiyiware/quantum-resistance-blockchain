@@ -48,16 +48,16 @@ Every elliptic-curve signature in production today (ECDSA on secp256k1, EdDSA on
 
 Key public signals from the past 12 months:
 
-- **NIST FIPS 203/204/205/206** finalised in August 2024, providing standardised post-quantum primitives (ML-KEM, ML-DSA, SLH-DSA, FN-DSA) ready for production deployment.
+- **NIST FIPS 203/204/205** finalised in August 2024, providing standardised post-quantum primitives (ML-KEM, ML-DSA, SLH-DSA) ready for production deployment; **FIPS 206** (FN-DSA / FALCON) remains in draft, expected late 2026–2027.
 - **Google Quantum AI** (March 2026 paper): breaking 256-bit ECC now estimated at <500,000 physical qubits, down from 20 million in 2019.
-- **Caltech + Atomic** (March 2026): plausible path with as few as ~10,000 qubits using atomic-architecture systems. Current commercial quantum computers already operate 1,000–2,000 qubits.
+- **Caltech + Oratomic** (March 2026): plausible path with as few as ~10,000–20,000 qubits using atomic-architecture systems. Current commercial quantum computers already operate 1,000–2,000 qubits.
 - **Project Eleven Q-Day Prize** (April 2026): independent researcher Giancarlo Lelli broke a real 15-bit ECC key on a publicly accessible quantum computer, demonstrating a 512× capability jump in seven months.
 - **Google internal migration deadline** moved to 2029, six years ahead of the NIST 2035 baseline.
-- **Vitalik Buterin**: "Crypto has until 2028 to avoid quantum collapse."
+- **Vitalik Buterin** (Devconnect 2025, Buenos Aires, citing Scott Aaronson): warned that a serious quantum threat could arrive around 2028, requiring crypto to complete its post-quantum migration before then.
 - **Jefferies**: 10% reduction in Bitcoin allocation in model portfolios (January 2026), citing quantum risk explicitly.
 - **MITRE / Post-Quantum Cryptography Coalition**: the *PQC Migration Roadmap* (May 2025) frames migration as a four-stage, multi-year organizational effort — reinforcing how slow and hard it is to migrate existing systems, and why a PQ-native chain (which has nothing to migrate) closes the gap faster.
 
-Regulatory pressure tracks the same trajectory: NIS2 (EU, in force October 2024) lists post-quantum resistance among duty-of-care criteria for critical infrastructure; MiCA (in force December 2024) governs future token issuance in this space.
+Regulatory pressure tracks the same trajectory: NIS2 (EU; directive in force since January 2023, national-transposition deadline October 2024) establishes risk-management duties under which post-quantum resistance fits as a forward-looking duty-of-care criterion for critical infrastructure; MiCA (in force December 2024) governs future token issuance in this space.
 
 The threats divide cleanly into two classes:
 
@@ -152,7 +152,7 @@ No known project pursues all five capabilities simultaneously. The privacy chain
 
 The quantum threat to elliptic-curve cryptography is no longer hypothetical. Once a cryptographically relevant quantum computer exists, every public key ever exposed on a public chain — that is, every wallet that has ever sent a transaction — becomes a forgery target. The total at-risk balance on Ethereum and Bitcoin alone exceeds 1 trillion USD at current valuations.
 
-Existing L1s cannot realistically migrate in time. Coordinated migration of Bitcoin's state has been estimated at a minimum 76 days of continuous on-chain activity assuming community consensus from day one — a consensus that Bitcoin's governance has never achieved in less than 18 months. Ethereum's roadmap acknowledges the problem but does not commit to a concrete deadline before 2030. Meanwhile, regulated institutions in the EU (under NIS2 and its forthcoming supplementary implementing guidance) will be required to demonstrate post-quantum resistance for critical infrastructure well before 2030.
+Existing L1s cannot realistically migrate in time. Coordinated migration of Bitcoin's state has been estimated (arXiv:2410.16965) at a minimum 76 days of continuous on-chain activity assuming community consensus from day one — a consensus that Bitcoin's governance has never achieved in less than 18 months. Ethereum's roadmap acknowledges the problem but does not commit to a concrete deadline before 2030. Meanwhile, regulated institutions in the EU (under NIS2 and its forthcoming supplementary implementing guidance) will be required to demonstrate post-quantum resistance for critical infrastructure well before 2030.
 
 The result is a clear infrastructure gap that no profit-driven L1 has a structural incentive to close. An open-source, grant-funded, L2 PQ-first project — designed for EVM compatibility so existing Ethereum apps and tooling can migrate without rewriting — is the cleanest path to closing that gap in the available time window. Phase 0 has demonstrated technical feasibility; Phase 1 (this grant) brings it to a public Ethereum-connected testnet.
 
@@ -209,7 +209,7 @@ External peer review of the Phase 0 artefacts led directly to a security fix in 
 - **NIST FIPS 203** (ML-KEM / Kyber) — key encapsulation.
 - **NIST FIPS 204** (ML-DSA / Dilithium) — signatures, primary.
 - **NIST FIPS 205** (SLH-DSA / SPHINCS+) — conservative fallback signature scheme.
-- **NIST FIPS 206** (FN-DSA / FALCON) — compact signatures, opt-in.
+- **NIST FIPS 206** (FN-DSA / FALCON) — compact signatures, opt-in (draft, expected late 2026–2027).
 - **ERC-4337** — Account Abstraction.
 - **EIP-1559** — fee market.
 - **EIP-4844** — blob transactions (for Phase 2 data availability).

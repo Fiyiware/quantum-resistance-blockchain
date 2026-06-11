@@ -38,7 +38,7 @@ En abril de 2026, un investigador usó un ordenador cuántico público para deri
 
 Google adelanta su migración post-cuántica a 2029.
 
-Vitalik: "cripto tiene hasta 2028 para evitar el colapso cuántico."
+Vitalik Buterin (en Devconnect 2025, citando a Scott Aaronson) advierte que cripto debe estar lista para lo cuántico hacia ~2028.
 
 El mayor robo de la historia ha empezado.
 

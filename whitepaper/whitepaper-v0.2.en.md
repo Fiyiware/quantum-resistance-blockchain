@@ -19,12 +19,12 @@ At minute 9, an attacker with a large enough quantum computer has derived the se
 This is not science fiction. It is mathematics that has existed since 1994 (Shor's algorithm) and hardware whose rate of progress has accelerated sharply over the last 18 months:
 
 - In **March 2026**, Google published that breaking Bitcoin's elliptic-curve cryptography requires **fewer than 500,000 physical qubits**, down from the 20 million the same company estimated in 2019.
-- Days later, researchers at **Caltech** and the startup **Atomic** showed that, using laser-controlled atomic architecture, **10,000 qubits** might suffice.
+- Days later, researchers at **Caltech** and the startup **Oratomic** showed that, using laser-controlled atomic architecture, on the order of **10,000–20,000 qubits** might suffice.
 - Today's commercial quantum computers **already have between 1,000 and 2,000 qubits**.
 - In **April 2026**, independent researcher **Giancarlo Lelli** broke the first public ECC key (15 bits) using a commercially accessible quantum computer and won Project Eleven's **Q-Day Prize** (1 BTC).
 - In **January 2026**, the investment bank **Jefferies** removed 10% of its Bitcoin allocation from its model portfolios, explicitly citing quantum risk.
 - **Google** has moved its own internal post-quantum migration deadline up to **2029**, six years ahead of NIST's baseline (2035).
-- **Vitalik Buterin** (Ethereum's founder): *"crypto has until 2028 to avoid the quantum collapse."*
+- **Vitalik Buterin** (Ethereum's founder), speaking at Devconnect 2025 (Buenos Aires, November 2025) and citing computer scientist Scott Aaronson, warned that a serious quantum threat could arrive around **2028** and that crypto must prepare its post-quantum migration before then.
 
 Expert consensus has contracted brutally. Two years ago the conversation was about 2040. Today it is about **2028–2032**.
 
@@ -76,7 +76,7 @@ Today's post-quantum industry fundamentally covers **Threat A** (resistant signa
 | 2019 | ~20 million (physical, RSA-2048) | Gidney & Ekerå (Google) |
 | May 2025 | ~1 million (physical) | Google Research (revised) |
 | March 2026 | **< 500,000** (physical) | Google Quantum AI |
-| March 2026 | **~10,000** (logical, atomic architecture) | Caltech + Atomic |
+| March 2026 | **~10,000** (logical, atomic architecture) | Caltech + Oratomic |
 
 > **Methodological caveat — these numbers are not apples-to-apples.** They mix *targets* (RSA-2048 factoring vs ECC-256 discrete log — the 2019 figure, for instance, is Gidney & Ekerå's estimate for **factoring RSA-2048**, not breaking ECC) and *qubit types* (noisy physical vs error-corrected logical). A fault-tolerant logical qubit today requires **on the order of hundreds to thousands of physical qubits** for its error correction; today's commercial computers (IBM, Google, Quantinuum, IonQ) have **1,000–2,000 noisy *physical* qubits**, without that error correction. So the real gap between what exists today and what is needed is **far larger** than a raw comparison suggests, and the cost of breaking larger keys does not scale linearly. The point of the table is the **downward trend in estimated resources**, not any single comparable figure.
 
@@ -88,7 +88,7 @@ Timelines published by serious actors:
 - **NIST**: transition standard set for 2035, but outpaced by industry timelines.
 - **CNSA 2.0 (NSA, USA)**: classified systems fully migrated before 2035.
 - **ANSSI (France), BSI (Germany)**: PQ cryptography mandatory for critical systems before 2030.
-- **NIS2 (EU, in force since October 2024)**: quantum resistance as an enforceable duty-of-care criterion.
+- **NIS2 (EU)**: the directive entered into force in January 2023, with a national-transposition deadline of October 2024; it establishes risk-management duties under which quantum resistance fits as a forward-looking duty-of-care criterion.
 - **MiCA (EU, in force since December 2024)**: regulates crypto-asset issuers, opening the expectation of PQ requirements for tokens in critical infrastructure.
 
 ### 1.3 Harvest now, decrypt later: the heist that has already begun
@@ -103,7 +103,7 @@ The temporal asymmetry is what makes this attack devastating: the attacker does 
 
 ### 1.4 Migrating existing L1s in time is mathematically improbable
 
-A recent technical analysis of Bitcoin estimates that a full migration of the network's state to post-quantum addresses requires **a minimum of 76 days of continuous on-chain activity**, assuming unanimous community consensus from day one. Bitcoin's history shows that such consensus is never reached in less than 1–3 years. Ethereum has a more agile governance process but is equally slow. Solana, BNB Chain, Avalanche and the like have published no operational migration plan.
+A recent technical analysis of Bitcoin (arXiv:2410.16965) estimates that a full migration of the network's state to post-quantum addresses requires **a minimum of 76 days of continuous on-chain activity**, assuming unanimous community consensus from day one. Bitcoin's history shows that such consensus is never reached in less than 1–3 years. Ethereum has a more agile governance process but is equally slow. Solana, BNB Chain, Avalanche and the like have published no operational migration plan.
 
 By contrast, **a PQ-native chain from day one has nothing to migrate**: it is born in the correct state. That is the structural window in which QRB exists.
 
@@ -146,7 +146,7 @@ An L2 on Ethereum, by contrast:
 QRB adopts the NIST post-quantum standards as its authentication base:
 
 - **Primary digital signatures**: ML-DSA (FIPS 204, CRYSTALS-Dilithium), specifically **ML-DSA-65** as the default. Equivalent to 192 bits of classical security. Signature ~3,309 bytes; public key ~1,952 bytes.
-- **Opt-in alternative signatures**: FN-DSA (FALCON, FIPS 206) for cases that require compact signatures (~700 bytes); SLH-DSA (SPHINCS+, FIPS 205) for maximally conservative hash-based scenarios.
+- **Opt-in alternative signatures**: FN-DSA (FALCON, FIPS 206 — draft, expected late 2026–2027) for cases that require compact signatures (~700 bytes); SLH-DSA (SPHINCS+, FIPS 205) for maximally conservative hash-based scenarios.
 - **Key exchange**: ML-KEM (FIPS 203, CRYSTALS-Kyber), specifically ML-KEM-768, for encrypted node-to-node communication.
 - **Hashing**: Keccak-256 (EVM compatibility) and SHA3-512 as a precompile for applications with an explicit post-quantum margin against Grover.
 
@@ -481,13 +481,12 @@ The window to build this closes with every month that passes. The algorithms are
 - **2019** — Google estimates 20M qubits to break ECDSA-256.
 - **2022** — NIST PQ standards finalization begins.
 - **August 2024** — Official publication of FIPS 203, 204, 205.
-- **October 2024** — NIS2 enters into force in the EU.
+- **October 2024** — NIS2 national-transposition deadline in the EU.
 - **December 2024** — MiCA enters into force in the EU.
 - **May 2025** — Google revises its estimate to 1M qubits.
-- **November 2025** — German researchers teleport quantum information over commercial fiber (Nature).
 - **January 2026** — Jefferies cuts 10% of Bitcoin in model portfolios over quantum risk.
 - **March 2026** — Google publishes a <500K qubit estimate.
-- **March 2026** — Caltech + Atomic publish a 10,000-qubit architecture.
+- **March 2026** — Caltech + Oratomic publish a 10,000–20,000-qubit architecture.
 - **March 2026** — Google moves its internal migration deadline up to 2029.
 - **April 2026** — Giancarlo Lelli wins the Q-Day Prize, breaking ECC-15 on a public quantum computer.
 - **March 2026** — ACM announces the 2025 A.M. Turing Award for Bennett and Brassard.
@@ -495,7 +494,10 @@ The window to build this closes with every month that passes. The algorithms are
 
 ### C. Key references
 
-- NIST FIPS 203 (ML-KEM), 204 (ML-DSA), 205 (SLH-DSA), 206 (FN-DSA). August 2024.
+- NIST FIPS 203 (ML-KEM), 204 (ML-DSA), 205 (SLH-DSA) — published August 2024. FIPS 206 (FN-DSA) — draft, expected late 2026–2027.
+- Project Eleven, *Q-Day Prize* (announced via PR Newswire, April 2026).
+- ACM, *2025 A.M. Turing Award to Bennett and Brassard* (announced March 2026).
+- *Bitcoin post-quantum migration analysis*, arXiv:2410.16965.
 - Regulation (EU) 2023/1114 MiCA.
 - Directive (EU) 2022/2555 NIS2.
 - Buterin, V. et al., *Account Abstraction via Entry Point Contract Specification (ERC-4337)*.
