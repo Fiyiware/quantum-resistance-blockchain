@@ -88,7 +88,8 @@ quantum-resistance-blockchain/
 │   ├── tests/                     End-to-end tests
 │   └── README.md                  Prototype setup and usage
 ├── poc/
-│   └── ml-dsa-precompile/         Rust PoC: ML-DSA-65 verification (MLDSAVERIFY precompile core)
+│   ├── ml-dsa-precompile/         Rust PoC: ML-DSA-65 verification (MLDSAVERIFY precompile core)
+│   └── evm-precompile/            Rust PoC: that core wrapped as a revm 41 precompile (real EVM interface)
 ├── marketing/                     Public launch materials (X thread, launch kit)
 ├── .github/workflows/             Continuous integration (GitHub Actions)
 ├── resumen.md                     ~700-word pitch (Spanish)

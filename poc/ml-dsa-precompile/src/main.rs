@@ -1,6 +1,6 @@
 //! QRB proof-of-concept — ML-DSA-65 (FIPS 204) signature verification.
 //!
-//! This is the cryptographic core of QRB's planned `DSARECOVER` EVM precompile:
+//! This is the cryptographic core of QRB's planned `MLDSAVERIFY` EVM precompile:
 //! given (message, signature, public key), decide if the signature is valid.
 //! It demonstrates, in the Rust/Reth ecosystem, that the operation works, that
 //! it rejects tampering, the real key/signature sizes, and how fast a single
@@ -70,5 +70,5 @@ fn main() {
     println!("  per call: {per:?}  (~{:.1} us/verify)", per.as_secs_f64() * 1e6);
 
     println!("\nOK — ML-DSA-65 verification works, rejects tampering, and is fast.");
-    println!("This is the operation QRB will expose as the DSARECOVER precompile (Phase 1).");
+    println!("This is the operation QRB will expose as the MLDSAVERIFY precompile (Phase 1).");
 }
