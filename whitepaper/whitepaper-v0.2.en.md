@@ -26,7 +26,7 @@ This is not science fiction. It is mathematics that has existed since 1994 (Shor
 - **Google** has moved its own internal post-quantum migration deadline up to **2029**, six years ahead of NIST's baseline (2035).
 - **Vitalik Buterin** (Ethereum's founder), speaking at Devconnect 2025 (Buenos Aires, November 2025) and citing computer scientist Scott Aaronson, warned that a serious quantum threat could arrive around **2028** and that crypto must prepare its post-quantum migration before then.
 
-Expert consensus has contracted brutally. Two years ago the conversation was about 2040. Today it is about **2028–2032**.
+The center of gravity of expert estimates has shifted sharply. Two years ago the conversation centered on 2040; today much of it falls in the **2028–2032** range. The exact arrival date of a cryptographically relevant quantum computer remains genuinely uncertain — but the direction of travel is not.
 
 Meanwhile, today's encrypted data is already being harvested — communications, blockchain transactions, medical records, classified emails — to be decrypted once the hardware exists. The practice has a name: *Harvest Now, Decrypt Later*. Brassard, awarded the 2025 ACM A.M. Turing Award (announced March 2026) for inventing quantum cryptography forty years before the world needed it, puts it plainly: *"all of the internet from the past 40 years will become an open book, and there is nothing you can do to save the past."*
 
@@ -66,7 +66,7 @@ From that single algorithm, **two distinct classes of threat** follow, which QRB
 | **A — Impersonation** (Shor on signatures) | The attacker derives the sender's private key and signs transactions in their name | The 9-minute attack on Bitcoin. Draining wallets with an exposed public key |
 | **B — Retroactive harvesting** (Shor on channel encryption + decryption of stored data) | The attacker decrypts content captured years earlier | *Harvest now, decrypt later*. Retrospective reading of the chain's entire history |
 
-Today's post-quantum industry fundamentally covers **Threat A** (resistant signatures). QRB positions itself as the first blockchain to cover **A and B** simultaneously. Section 7.5 details layer B.
+Today's post-quantum industry fundamentally covers **Threat A** (resistant signatures). QRB is explicitly designed to cover **both A and B** — a combination we are not aware of any other blockchain pursuing (layer B is a Phase 3+ research line, not a delivered feature). Section 7.5 details layer B.
 
 ### 1.2 The timeline has contracted
 
@@ -123,7 +123,9 @@ By contrast, **a PQ-native chain from day one has nothing to migrate**: it is bo
 | Aleo | ❌ (SNARK) | ✅ (not PQ) | ❌ | ❌ | ❌ | Privacy not quantum-resistant |
 | Aztec | ❌ (SNARK) | ✅ (not PQ) | partial | ✅ | ❌ | Privacy not quantum-resistant |
 | Monero | ❌ | ✅ (not PQ) | ❌ | ❌ | ❌ | Privacy not quantum-resistant, no smart contracts |
-| **QRB (proposed)** | **✅ ML-DSA-65** | **✅ STARKs + lattice** | **✅** | **✅** | **✅** | Young project (Phase 0) |
+| **QRB (roadmap goal)** | **✅ ML-DSA-65 (Phase 0)** | 🔬 STARKs (Phase 3+) | 📐 Phase 1 | 📐 Phase 1 | 🔬 Phase 3+ | Young project; L2 core still to be built |
+
+> **Honest reading of this table.** The columns describe the **combination of capabilities QRB pursues across its entire roadmap**, not its current state. Only PQ authentication (ML-DSA-65) is implemented today in the Phase 0 prototype; EVM and Account Abstraction are designed for Phase 1, and PQ privacy and QKD integration are a research line / Phase 3+ vision. The value of the table is not to claim feature parity today, but to point out that **no known project pursues all five dimensions together**. The precise status of each component is in the roadmap section (§8) and in the status table of the repository README.
 
 No project on the market combines all five columns. QRB positions itself in that gap.
 
@@ -145,7 +147,7 @@ An L2 on Ethereum, by contrast:
 
 QRB adopts the NIST post-quantum standards as its authentication base:
 
-- **Primary digital signatures**: ML-DSA (FIPS 204, CRYSTALS-Dilithium), specifically **ML-DSA-65** as the default. Equivalent to 192 bits of classical security. Signature ~3,309 bytes; public key ~1,952 bytes.
+- **Primary digital signatures**: ML-DSA (FIPS 204, CRYSTALS-Dilithium), specifically **ML-DSA-65** as the default. Equivalent to 192 bits of classical security. Signature ~3,309 bytes; public key ~1,952 bytes. We default to the level-3 parameter set (ML-DSA-65) rather than the smaller level-2 ML-DSA-44 because a base-layer signature commits keys to a public ledger for decades, where a generous long-term security margin matters more than saving ~1 KB per signature; ML-DSA-87 (level 5) and FN-DSA remain available opt-in for users who want a larger margin or more compact signatures respectively.
 - **Opt-in alternative signatures**: FN-DSA (FALCON, FIPS 206 — draft, expected late 2026–2027) for cases that require compact signatures (~700 bytes); SLH-DSA (SPHINCS+, FIPS 205) for maximally conservative hash-based scenarios.
 - **Key exchange**: ML-KEM (FIPS 203, CRYSTALS-Kyber), specifically ML-KEM-768, for encrypted node-to-node communication.
 - **Hashing**: Keccak-256 (EVM compatibility) and SHA3-512 as a precompile for applications with an explicit post-quantum margin against Grover.
@@ -229,10 +231,11 @@ QRB optionally integrates QKD channels for **transaction submission** from insti
 
 - **Use case**: a European bank with an internal QKD network (several already have them deployed after NIS2) can send its transactions to QRB over a QKD-secured channel, guaranteeing perfect confidentiality of the very act of sending the transaction, not just of its content.
 - **How it works**: the institutional wallet signs with ML-DSA-65 like any user, but the submission channel to the nearest node is encrypted with a key established via BB84. The receiving node forwards to its normal mempool.
-- **QRB's unique differentiator**: no other blockchain project has published a formal integration with the existing QKD stack. The wave of QKD deployments happening across Europe (NIS2 has accelerated this) opens a significant B2B market.
-- **Status**: Phase 3+ vision. Requires a partnership with one or more European QKD operators. A possible path: pilots with financial clients via Cellnex, Telefónica Tech or Deutsche Telekom T-Systems.
+- **Possible differential interest**: we are not aware of any other blockchain that has published a formal integration with the existing QKD stack. If the QKD deployments underway across Europe (accelerated by NIS2) mature, an institutional B2B market could open. We present this as a hypothesis to explore, not an advantage already won.
+- **Honest limitations**: QKD protects only the *submission channel*, not on-chain content (which is public unless the confidentiality layer §7.5 is used); QKD alone does not authenticate (hence its combination with ML-DSA signatures); and it requires dedicated fiber or satellite links, restricting it to institutional clients. It is not a silver bullet.
+- **Status**: Phase 3+ research line / vision. Would require a partnership with one or more European QKD operators (possible paths: pilots via Cellnex, Telefónica Tech or Deutsche Telekom T-Systems). Not a Phase 0 or Phase 1 goal.
 
-This point makes QRB not *another* post-quantum project but **the first blockchain to recognize that the quantum era has two answers, not one**.
+This framing is what sets QRB apart from *another* post-quantum project: it is built around the recognition that the quantum era has two answers, not one.
 
 ---
 
@@ -295,7 +298,7 @@ QRB will follow a **progressively decentralized** governance model:
 
 QRB is designed against an attacker with:
 
-- Growing quantum computational resources (potential CRQC 2028–2032 per updated expert consensus).
+- Growing quantum computational resources (potential CRQC ~2028–2032 per updated expert estimates; exact timing genuinely uncertain).
 - *Harvest now, decrypt later* capability against the chain's public history.
 - Control of up to 33% of the stake (standard BFT assumption).
 - Full access to the source code (the entire project is open source MIT/Apache-2.0).
