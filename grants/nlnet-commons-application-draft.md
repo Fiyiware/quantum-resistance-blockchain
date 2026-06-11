@@ -95,6 +95,7 @@ The Phase 0 deliverables are public and verifiable on the project repository, wi
 - CLI with create/list/balance/send/mine/show commands (`prototype/qrb_cli.py`).
 - End-to-end tests covering signature verification, tampering rejection, double-spend rejection, proposer impersonation rejection (`prototype/tests/test_basic.py`).
 - **Rust proof-of-concept of the `MLDSAVERIFY` precompile core** (`poc/ml-dsa-precompile/`): ML-DSA-65 verification in Rust (via the `fips204` crate), rejecting tampered signatures/messages, with real sizes (1,952 / 4,032 / 3,309 bytes) and a verification benchmark (~200 µs/verify) — the direct starting point and gas-model input for Phase 1 deliverable 1.
+- **Second Rust PoC binding that core to the real EVM precompile interface** (`poc/evm-precompile/`): the verifier is wrapped as a `revm` 41 `Precompile` (the EVM engine Reth uses), with real input/output ABI, linear gas accounting and a fixed address, and is exercised through revm's own `Precompile::execute` dispatch — the exact entry point used when EVM bytecode calls a precompile. This de-risks Phase 1 deliverable 1: registering this precompile into a Reth fork behind JSON-RPC is the remaining (funded) step, not an open question.
 - 24-page whitepaper with full technical and economic specification (`whitepaper/whitepaper-v0.2.pdf`, plus an English version at `whitepaper/whitepaper-v0.2.en.md`).
 - Open source under a dual MIT / Apache-2.0 licence.
 

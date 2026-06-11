@@ -1,0 +1,17 @@
+[package]
+name = "qrb-evm-precompile-poc"
+version = "0.1.0"
+edition = "2021"
+description = "QRB PoC: ML-DSA-65 (FIPS 204) verification as a revm/Reth MLDSAVERIFY precompile, type-checked against revm 41."
+license = "MIT OR Apache-2.0"
+
+[lib]
+path = "src/lib.rs"
+
+# revm-precompile is pulled with default-features disabled so the build does NOT
+# require the C-backed crypto deps (c-kzg, blst, secp256k1 -> cmake/clang). We
+# only need revm's precompile *types* (Precompile, PrecompileId, EthPrecompile*,
+# calc_linear_cost, u64_to_address); the ML-DSA verification itself is fips204.
+[dependencies]
+fips204 = "0.4"
+revm-precompile = { version = "41", default-features = false, features = ["std"] }
