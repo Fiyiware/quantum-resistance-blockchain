@@ -12,7 +12,7 @@
 >
 > **Maintainer of the draft**: Fiyiware (Luiggi Leonel Cedeño Bermeo)
 >
-> **Last update**: 31 May 2026
+> **Last update**: 11 June 2026
 
 This document mirrors the typical sections of the NLNet submission form. Final wording and order will be adjusted to match the exact fields when copying into the online form at https://nlnet.nl/propose/.
 
@@ -44,7 +44,7 @@ Milestone-based release with explicit deliverables tied to each tranche — see 
 
 ### 6.1 The problem
 
-Every elliptic-curve signature in production today (ECDSA on secp256k1, EdDSA on Ed25519) is breakable in polynomial time by a sufficiently large quantum computer running Shor's algorithm. The consensus estimate for the arrival of a Cryptographically Relevant Quantum Computer (CRQC) has contracted dramatically: from "2040 or later" in 2019 to "2028–2032" in early 2026.
+Every elliptic-curve signature in production today (ECDSA on secp256k1, EdDSA on Ed25519) is breakable in polynomial time by a sufficiently large quantum computer running Shor's algorithm. The center of gravity of expert estimates for the arrival of a Cryptographically Relevant Quantum Computer (CRQC) has contracted dramatically: from "2040 or later" in 2019 to the "2028–2032" range in early 2026. The exact arrival date remains genuinely uncertain — but the direction of travel is not.
 
 Key public signals from the past 12 months:
 
@@ -134,7 +134,7 @@ All artefacts published under MIT/Apache-2.0 dual licence.
 | Monero | ❌ | ✅ but NOT PQ-safe | ❌ | ❌ | ✅ |
 | **QRB (target)** | ✅ ML-DSA-65 (Phase 0) | 🔬 STARKs (Phase 3+) | 📐 Phase 1 | 📐 Phase 1 | ✅ |
 
-No known project pursues all five capabilities simultaneously. The privacy chains in the market (Aleo, Aztec, Monero) provide privacy that is **broken at long horizons** under harvest-now-decrypt-later. QRB is the first project to identify this gap publicly and to design its confidentiality layer on STARKs from the ground up.
+No known project pursues all five capabilities simultaneously. The privacy chains in the market (Aleo, Aztec, Monero) provide privacy that is **broken at long horizons** under harvest-now-decrypt-later. We are not aware of another project that has publicly identified this gap and designed its confidentiality layer on STARKs (natively post-quantum) from the ground up.
 
 ## 8. Significant technical challenges expected
 
@@ -152,7 +152,7 @@ No known project pursues all five capabilities simultaneously. The privacy chain
 
 The quantum threat to elliptic-curve cryptography is no longer hypothetical. Once a cryptographically relevant quantum computer exists, every public key ever exposed on a public chain — that is, every wallet that has ever sent a transaction — becomes a forgery target. The total at-risk balance on Ethereum and Bitcoin alone exceeds 1 trillion USD at current valuations.
 
-Existing L1s cannot realistically migrate in time. Coordinated migration of Bitcoin's state has been estimated (arXiv:2410.16965) at a minimum 76 days of continuous on-chain activity assuming community consensus from day one — a consensus that Bitcoin's governance has never achieved in less than 18 months. Ethereum's roadmap acknowledges the problem but does not commit to a concrete deadline before 2030. Meanwhile, regulated institutions in the EU (under NIS2 and its forthcoming supplementary implementing guidance) will be required to demonstrate post-quantum resistance for critical infrastructure well before 2030.
+Existing L1s cannot realistically migrate in time. Coordinated migration of Bitcoin's state has been estimated (arXiv:2410.16965) at a minimum 76 days of continuous on-chain activity assuming community consensus from day one — a consensus that Bitcoin's governance has never achieved in less than 18 months. Ethereum's roadmap acknowledges the problem but does not commit to a concrete deadline before 2030. Meanwhile, regulated institutions in the EU (under NIS2's risk-management duties) will increasingly be expected to demonstrate forward-looking cryptographic resilience — post-quantum readiness included — for critical infrastructure.
 
 The result is a clear infrastructure gap that no profit-driven L1 has a structural incentive to close. An open-source, grant-funded, L2 PQ-first project — designed for EVM compatibility so existing Ethereum apps and tooling can migrate without rewriting — is the cleanest path to closing that gap in the available time window. Phase 0 has demonstrated technical feasibility; Phase 1 (this grant) brings it to a public Ethereum-connected testnet.
 
