@@ -14,7 +14,7 @@ In April 2026, a researcher used a public quantum computer to derive a private k
 
 Google just moved its post-quantum migration up to 2029.
 
-Vitalik: "crypto has until 2028 to avoid the quantum collapse."
+Vitalik Buterin (at Devconnect 2025, citing Scott Aaronson) warns crypto needs to be quantum-ready by ~2028.
 
 The biggest heist in history has already begun.
 

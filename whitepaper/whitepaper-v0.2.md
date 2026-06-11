@@ -19,12 +19,12 @@ En el minuto 9, un atacante con un ordenador cuántico de tamaño suficiente ha 
 Esto no es ciencia ficción. Es matemática que existe desde 1994 (el algoritmo de Shor) y hardware cuyo ritmo de avance se ha disparado en los últimos 18 meses:
 
 - En **marzo de 2026**, Google publicó que romper la criptografía elíptica de Bitcoin requiere **menos de 500.000 qubits físicos**, frente a 20 millones que estimaba la misma compañía en 2019.
-- Días después, investigadores de **Caltech** y la startup **Atomic** demostraron que con arquitectura basada en átomos controlados por láser, podrían bastar **10.000 qubits**.
+- Días después, investigadores de **Caltech** y la startup **Oratomic** demostraron que con arquitectura basada en átomos controlados por láser, podrían bastar del orden de **10.000–20.000 qubits**.
 - Los ordenadores cuánticos comerciales actuales **ya tienen entre 1.000 y 2.000 qubits**.
 - En **abril de 2026**, el investigador independiente **Giancarlo Lelli** rompió la primera clave ECC pública (15 bits) con un ordenador cuántico de acceso comercial y ganó el **Q-Day Prize** de Project Eleven (1 BTC).
 - En **enero de 2026**, el banco de inversión **Jefferies** retiró el 10% de su asignación a Bitcoin en sus carteras modelo, citando explícitamente el riesgo cuántico.
 - **Google** ha adelantado su propio plazo interno de migración post-cuántica al **año 2029**, recortando seis años respecto al plazo del NIST (2035).
-- **Vitalik Buterin** (fundador de Ethereum): *"cripto tiene hasta 2028 para evitar el colapso cuántico."*
+- **Vitalik Buterin** (fundador de Ethereum), en Devconnect 2025 (Buenos Aires, noviembre de 2025) y citando al científico computacional Scott Aaronson, advirtió que una amenaza cuántica seria podría llegar hacia **2028** y que cripto debe preparar su migración post-cuántica antes de esa fecha.
 
 El consenso experto se ha contraído brutalmente. Hace dos años se hablaba de 2040. Hoy se habla de **2028-2032**.
 
@@ -76,7 +76,7 @@ La industria post-cuántica actual cubre fundamentalmente la **Amenaza A** (firm
 | 2019 | ~20 millones (físicos, RSA-2048) | Gidney y Ekerå (Google) |
 | Mayo 2025 | ~1 millón (físicos) | Google Research (revisión) |
 | Marzo 2026 | **< 500.000** (físicos) | Google Quantum AI |
-| Marzo 2026 | **~10.000** (lógicos, arquitectura atómica) | Caltech + Atomic |
+| Marzo 2026 | **~10.000** (lógicos, arquitectura atómica) | Caltech + Oratomic |
 
 > **Aviso metodológico — estas cifras no son comparables entre sí.** Mezclan *objetivos* (factorizar RSA-2048 vs logaritmo discreto en ECC-256 — la cifra de 2019, por ejemplo, es la estimación de Gidney y Ekerå para **factorizar RSA-2048**, no para romper ECC) y *tipos de qubit* (físicos ruidosos vs lógicos con corrección de errores). Un qubit lógico tolerante a fallos requiere hoy **del orden de cientos a miles de qubits físicos**; los ordenadores comerciales actuales (IBM, Google, Quantinuum, IonQ) tienen **1.000-2.000 qubits *físicos* ruidosos**, sin esa corrección de errores. Por tanto, la brecha real entre lo disponible hoy y lo necesario es **mucho mayor** de lo que sugiere comparar los números en bruto, y el coste de romper claves más grandes no escala de forma lineal. Lo relevante de la tabla es la **tendencia descendente en los recursos estimados**, no ninguna cifra comparable concreta.
 
@@ -88,7 +88,7 @@ Plazos publicados por actores serios:
 - **NIST**: estándar de transición fijado en 2035, pero superado por los plazos de la industria.
 - **CNSA 2.0 (NSA, EEUU)**: sistemas clasificados completamente migrados antes de 2035.
 - **ANSSI (Francia), BSI (Alemania)**: criptografía PQ obligatoria para sistemas críticos antes de 2030.
-- **NIS2 (UE, vigente desde octubre 2024)**: resistencia cuántica como criterio de diligencia exigible.
+- **NIS2 (UE)**: la directiva entró en vigor en enero de 2023, con plazo de transposición nacional en octubre de 2024; establece deberes de gestión de riesgos en los que la resistencia cuántica encaja como criterio de diligencia con visión de futuro.
 - **MiCA (UE, vigente desde diciembre 2024)**: regula los emisores de criptoactivos, abriendo expectativa de requisitos PQ para tokens en infraestructuras críticas.
 
 ### 1.3 Harvest now, decrypt later: el robo que ya empezó
@@ -103,7 +103,7 @@ La asimetría temporal es lo que hace este ataque devastador: el atacante no nec
 
 ### 1.4 Migrar las L1 existentes a tiempo es matemáticamente improbable
 
-Un análisis técnico reciente sobre Bitcoin estima que una migración completa del estado de la red a direcciones post-cuánticas requiere **un mínimo de 76 días de actividad continuada en la cadena**, asumiendo consenso unánime de la comunidad desde el primer día. La historia de Bitcoin demuestra que ese consenso no se alcanza nunca en menos de 1-3 años. Ethereum tiene un proceso de governance más ágil pero igualmente lento. Solana, BNB Chain, Avalanche y similares no han publicado plan operativo de migración.
+Un análisis técnico reciente sobre Bitcoin (arXiv:2410.16965) estima que una migración completa del estado de la red a direcciones post-cuánticas requiere **un mínimo de 76 días de actividad continuada en la cadena**, asumiendo consenso unánime de la comunidad desde el primer día. La historia de Bitcoin demuestra que ese consenso no se alcanza nunca en menos de 1-3 años. Ethereum tiene un proceso de governance más ágil pero igualmente lento. Solana, BNB Chain, Avalanche y similares no han publicado plan operativo de migración.
 
 En cambio, **una cadena PQ-nativa desde el día uno no tiene que migrar nada**: nace en el estado correcto. Esa es la ventana estructural en la que existe QRB.
 
@@ -148,7 +148,7 @@ Una L2 sobre Ethereum, en cambio:
 QRB adopta los estándares NIST post-cuánticos como base de autenticación:
 
 - **Firmas digitales primarias**: ML-DSA (FIPS 204, CRYSTALS-Dilithium), específicamente **ML-DSA-65** como *default*. Equivalente a 192 bits de seguridad clásica. Firma ~3.309 bytes; clave pública ~1.952 bytes.
-- **Firmas alternativas opt-in**: FN-DSA (FALCON, FIPS 206) para casos que requieran firmas compactas (~700 bytes); SLH-DSA (SPHINCS+, FIPS 205) para escenarios de máxima conservación basados en hash.
+- **Firmas alternativas opt-in**: FN-DSA (FALCON, FIPS 206 — borrador, previsto para finales de 2026–2027) para casos que requieran firmas compactas (~700 bytes); SLH-DSA (SPHINCS+, FIPS 205) para escenarios de máxima conservación basados en hash.
 - **Intercambio de claves**: ML-KEM (FIPS 203, CRYSTALS-Kyber), específicamente ML-KEM-768, para comunicación cifrada entre nodos.
 - **Hash**: Keccak-256 (compatibilidad EVM) y SHA3-512 como precompilado para aplicaciones con margen post-cuántico explícito frente a Grover.
 
@@ -484,13 +484,12 @@ La ventana para construir esto se cierra cada mes que pasa. Los algoritmos está
 - **2019** — Google estima 20M qubits para romper ECDSA-256.
 - **2022** — Comienza la finalización de los estándares NIST PQ.
 - **Agosto 2024** — Publicación oficial de FIPS 203, 204, 205.
-- **Octubre 2024** — NIS2 entra en vigor en la UE.
+- **Octubre 2024** — Plazo de transposición nacional de NIS2 en la UE.
 - **Diciembre 2024** — MiCA entra en vigor en la UE.
 - **Mayo 2025** — Google revisa su estimación a 1M qubits.
-- **Noviembre 2025** — Investigadores alemanes teleportan información cuántica sobre fibra comercial (Nature).
 - **Enero 2026** — Jefferies reduce 10% de Bitcoin en carteras modelo por riesgo cuántico.
 - **Marzo 2026** — Google publica estimación <500K qubits.
-- **Marzo 2026** — Caltech + Atomic publican arquitectura con 10.000 qubits.
+- **Marzo 2026** — Caltech + Oratomic publican arquitectura con 10.000–20.000 qubits.
 - **Marzo 2026** — Google adelanta su plazo interno de migración a 2029.
 - **Abril 2026** — Giancarlo Lelli gana el Q-Day Prize rompiendo ECC-15 en cuántico público.
 - **Marzo 2026** — ACM anuncia el A.M. Turing Award 2025 para Bennett y Brassard.
@@ -498,7 +497,10 @@ La ventana para construir esto se cierra cada mes que pasa. Los algoritmos está
 
 ### C. Referencias clave
 
-- NIST FIPS 203 (ML-KEM), 204 (ML-DSA), 205 (SLH-DSA), 206 (FN-DSA). Agosto 2024.
+- NIST FIPS 203 (ML-KEM), 204 (ML-DSA), 205 (SLH-DSA) — publicados en agosto de 2024. FIPS 206 (FN-DSA) — borrador, previsto para finales de 2026–2027.
+- Project Eleven, *Q-Day Prize* (anunciado vía PR Newswire, abril de 2026).
+- ACM, *A.M. Turing Award 2025 a Bennett y Brassard* (anunciado en marzo de 2026).
+- *Análisis de migración post-cuántica de Bitcoin*, arXiv:2410.16965.
 - Reglamento (UE) 2023/1114 MiCA.
 - Directiva (UE) 2022/2555 NIS2.
 - Buterin, V. et al., *Account Abstraction via Entry Point Contract Specification (ERC-4337)*.

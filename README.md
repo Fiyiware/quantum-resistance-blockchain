@@ -41,9 +41,9 @@ For the full technical and economic plan, read the whitepaper in [English](white
 
 In **April 2026**, an independent researcher used a publicly accessible cloud quantum computer to break a 15-bit elliptic-curve cryptography key, winning Project Eleven's _Q-Day Prize_ ([CoinDesk coverage](https://www.coindesk.com/tech/2026/04/24/researcher-wins-1-bitcoin-bounty-for-largest-quantum-attack-on-underlying-tech)). Fifteen bits is far short of the 256 used by Bitcoin and Ethereum, and the resource cost of attacking larger keys does **not** scale linearly — but the demonstration shifts the conversation from theoretical to demonstrable.
 
-Google now estimates that breaking ECDSA-256 requires **fewer than 500,000 physical qubits** (April 2026 technical report), down from 20 million in 2019. Caltech researchers and the startup Atomic published a separate study suggesting it could be done with on the order of **10,000 _logical_ qubits** using atomic-architecture hardware. A crucial caveat: today's commercial machines have 1,000–2,000 **noisy _physical_ qubits**, and a single fault-tolerant logical qubit requires on the order of hundreds to thousands of physical qubits for error correction. So the real gap between what exists today and what is needed remains **far larger** than a raw comparison of these numbers suggests. The direction of travel is clear; the arrival date of a cryptographically-relevant quantum computer is genuinely uncertain.
+Google now estimates that breaking ECDSA-256 requires **fewer than 500,000 physical qubits** (April 2026 technical report), down from 20 million in 2019. Caltech researchers and the startup Oratomic published a separate study suggesting it could be done with on the order of **10,000–20,000 _logical_ qubits** using atomic-architecture hardware. A crucial caveat: today's commercial machines have 1,000–2,000 **noisy _physical_ qubits**, and a single fault-tolerant logical qubit requires on the order of hundreds to thousands of physical qubits for error correction. So the real gap between what exists today and what is needed remains **far larger** than a raw comparison of these numbers suggests. The direction of travel is clear; the arrival date of a cryptographically-relevant quantum computer is genuinely uncertain.
 
-Vitalik Buterin (Ethereum founder): _"Crypto has until 2028 to avoid quantum collapse."_
+At Devconnect 2025 (Buenos Aires), Vitalik Buterin (Ethereum founder) — citing computer scientist Scott Aaronson — warned that a serious quantum threat could arrive around 2028, and that crypto must complete its post-quantum migration before then.
 
 Google has moved its **internal post-quantum migration deadline to 2029**, six years ahead of the NIST 2035 baseline.
 
@@ -51,7 +51,7 @@ In January 2026, Jefferies removed 10% of its Bitcoin allocation from model port
 
 Estimates remain estimates — the year of arrival of a cryptographically relevant quantum computer is genuinely uncertain. But the **direction is unambiguous**: in two years, the consensus window has contracted from "2040 or later" to **"2028–2032"**.
 
-Regulatory pressure tracks the same trajectory: the EU's NIS2 (in force since October 2024) requires post-quantum resistance as a duty-of-care criterion for critical infrastructure, and MiCA (in force since December 2024) sets the regulatory framework under which any future QRB token will be issued.
+Regulatory pressure tracks the same trajectory: the EU's NIS2 (directive in force since January 2023, with a national-transposition deadline of October 2024) establishes risk-management duties under which post-quantum resistance fits as a forward-looking duty-of-care criterion for critical infrastructure, and MiCA (in force since December 2024) sets the regulatory framework under which any future QRB token will be issued.
 
 ---
 
