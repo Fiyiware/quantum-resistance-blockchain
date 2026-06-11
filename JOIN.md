@@ -10,7 +10,7 @@ This document exists because the README's *"Looking for collaborators"* section 
 
 - **Currently a single-founder project, actively looking for the right one or two people to change that.** I am not pretending there's a team behind me, and I'm not pretending I can do this alone forever — that's why this file exists.
 - **Phase 0 only.** Working Python prototype, 24-page whitepaper, public repo with CI, MIT licensed, NLNet application in flight. Nothing more, nothing less. The roadmap is real but it is unfunded past Phase 0 self-funding.
-- **A real bet on post-quantum L2.** Not a meme. Read the [Why now](README.md#why-now) section of the README. The market window is genuinely narrow (2028-2032 by current consensus), the funding ecosystem (NLNet, EF, Optimism RetroPGF) is genuinely open, and there is genuinely no project combining ML-DSA auth + EVM + PQ privacy + AA + QKD-readiness as a roadmap target.
+- **A real bet on post-quantum L2.** Not a meme. Read the [Why now](README.md#why-now) section of the README. The market window is genuinely narrow (the 2028-2032 range by current expert estimates; exact timing uncertain), the funding ecosystem (NLNet, EF, Optimism RetroPGF) is genuinely open, and there is genuinely no project combining ML-DSA auth + EVM + PQ privacy + AA + QKD-readiness as a roadmap target.
 - **Public-launched.** X account `@QRB_PQ`, GitHub repo public, NLNet pre-application underway. There is no "stealth phase" to bring you into — the secret is out and the work is the secret.
 
 I would rather you read all of that and pass than join on a misread.
