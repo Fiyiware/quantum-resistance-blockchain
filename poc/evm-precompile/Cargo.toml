@@ -15,3 +15,10 @@ path = "src/lib.rs"
 [dependencies]
 fips204 = "0.4"
 revm-precompile = { version = "41", default-features = false, features = ["std"] }
+
+# revm (the full EVM) is only needed to *run* the end-to-end integration test in
+# tests/end_to_end.rs, so it is a dev-dependency: it does not affect anyone who
+# depends on this crate's library. default-features disabled keeps it off the C
+# crypto backends (c-kzg/blst); the pure-Rust fallbacks are used.
+[dev-dependencies]
+revm = { version = "41", default-features = false, features = ["std"] }
