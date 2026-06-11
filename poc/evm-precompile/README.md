@@ -15,12 +15,21 @@ precompiles):
 
 **It is** a real `revm_precompile::Precompile` value (`MLDSA65_VERIFY`), type-checked
 against revm 41, with real input/output ABI, linear gas accounting, and error
-semantics. The tests call it through revm's own `Precompile::execute` dispatch — the
-same entry point the EVM uses when bytecode `CALL`s a precompile address.
+semantics. Two layers of tests exercise it:
+
+- **Unit tests** (`src/lib.rs`) call it through revm's own `Precompile::execute`
+  dispatch — the entry point the EVM uses when bytecode `CALL`s a precompile address.
+- **An end-to-end test** (`tests/end_to_end.rs`) spins up a full `revm` EVM with a
+  custom `PrecompileProvider` that registers `MLDSAVERIFY` at `0x101`, then sends a
+  **real transaction** calling that address and asserts the returned 32-byte word.
+  The verification runs through the *entire* transaction pipeline (validation,
+  intrinsic gas, the call frame, precompile dispatch, result construction) — the
+  closest thing to running on a node without forking Reth.
 
 **It is not** a running Reth fork or a public devnet. Wiring this `Precompile` into a
-client's precompile set behind JSON-RPC is exactly the funded Phase 1 work. This PoC
-makes that step a known quantity instead of a leap of faith.
+shipping client behind JSON-RPC with a faucet is exactly the funded Phase 1 work. But
+the custom `PrecompileProvider` in the end-to-end test *is* the integration pattern a
+Reth fork uses — so that step is now a known quantity, not a leap of faith.
 
 > Honest note: the gas constants (`MLDSA65_VERIFY_BASE` etc.) are **placeholders**.
 > The real numbers are an output of the Phase 1 gas-model calibration driven by the
@@ -45,18 +54,21 @@ output = 32-byte word — 0x..01 if valid, 0x..00 otherwise (read by Solidity as
 ## Run it
 
 ```bash
-cargo test --release     # 6 tests: valid / tampered / wrong-message / malformed / OOG / registration
+cargo test --release     # 8 tests: 6 unit + 2 full-EVM end-to-end
 cargo clippy --all-targets --release
 ```
 
-`revm-precompile` is pulled with `default-features = false` so the build needs **no
-C toolchain** (no c-kzg / blst / cmake); only revm's precompile *types* are used, and
-the verification itself is the pure-Rust `fips204` crate.
+The **library** pulls `revm-precompile` with `default-features = false`, so consumers
+of this crate need **no C toolchain** (no c-kzg / blst / cmake); only revm's precompile
+*types* are used, and the verification itself is the pure-Rust `fips204` crate. The
+full `revm` EVM is a **dev-dependency** (also trimmed of the C backends), pulled only
+to run the end-to-end test.
 
 ## Integration point for the Reth fork (Phase 1)
 
-The verifier is already in the shape revm expects. Conceptually, Phase 1 registers it
-by adding `MLDSA65_VERIFY` to the active precompile set the EVM consults:
+The end-to-end test already shows the integration: a custom `PrecompileProvider` that
+wraps the standard `EthPrecompiles`, claims address `0x101`, and dispatches it to
+`MLDSA65_VERIFY`. A Reth fork uses the same pattern.
 
 ```rust
 use qrb_evm_precompile_poc::MLDSA65_VERIFY;
@@ -65,12 +77,13 @@ use qrb_evm_precompile_poc::MLDSA65_VERIFY;
 // MLDSA65_VERIFY.address() -> 0x0000…0101
 // MLDSA65_VERIFY.execute(input, gas_limit, reservoir) -> PrecompileResult
 //
-// In the Reth fork this Precompile is inserted into the node's PrecompileProvider
-// alongside the standard set, so EVM bytecode CALLing 0x101 dispatches here.
+// In the provider's `run`, when inputs.bytecode_address == 0x101, dispatch to
+// MLDSA65_VERIFY.execute(...) — see tests/end_to_end.rs for the working version.
 ```
 
-Building that provider + a single-node devnet exposing it over JSON-RPC is Phase 1
-deliverable 1. This crate is the part that is done and verifiable today.
+What remains for Phase 1 deliverable 1 is wiring this provider into a *shipping* Reth
+node and exposing it over JSON-RPC with a faucet — engineering, not an open question.
+The EVM-level mechanism is done and verifiable today (`cargo test`).
 
 ## Licence
 
