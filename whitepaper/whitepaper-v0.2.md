@@ -26,7 +26,7 @@ Esto no es ciencia ficción. Es matemática que existe desde 1994 (el algoritmo 
 - **Google** ha adelantado su propio plazo interno de migración post-cuántica al **año 2029**, recortando seis años respecto al plazo del NIST (2035).
 - **Vitalik Buterin** (fundador de Ethereum), en Devconnect 2025 (Buenos Aires, noviembre de 2025) y citando al científico computacional Scott Aaronson, advirtió que una amenaza cuántica seria podría llegar hacia **2028** y que cripto debe preparar su migración post-cuántica antes de esa fecha.
 
-El consenso experto se ha contraído brutalmente. Hace dos años se hablaba de 2040. Hoy se habla de **2028-2032**.
+El centro de gravedad de las estimaciones de los expertos se ha desplazado con fuerza. Hace dos años la conversación giraba en torno a 2040; hoy buena parte de ella cae en el rango **2028-2032**. La fecha exacta de llegada de un ordenador cuántico criptográficamente relevante sigue siendo genuinamente incierta — pero la dirección del avance no lo es.
 
 Mientras tanto, los datos cifrados de hoy ya se están cosechando — comunicaciones, transacciones blockchain, historiales médicos, correos clasificados — para descifrarlos cuando exista el hardware. Esta práctica tiene nombre: *Harvest Now, Decrypt Later*. Brassard, galardonado con el ACM A.M. Turing Award 2025 (anunciado en marzo de 2026) por inventar la criptografía cuántica cuarenta años antes de que el mundo lo necesitara, lo resume sin adornos: *"todo el internet de los últimos 40 años será un libro abierto, y no hay nada que puedas hacer para salvar el pasado."*
 
@@ -66,7 +66,7 @@ A partir de ese único algoritmo, se derivan **dos clases de amenaza distintas**
 | **A — Suplantación** (Shor sobre firmas) | El atacante deriva la clave privada del emisor y firma transacciones en su nombre | El ataque de 9 minutos sobre Bitcoin. Vaciado de carteras con clave pública expuesta |
 | **B — Cosecha retroactiva** (Shor sobre cifrado de canal + descifrado de datos almacenados) | El atacante descifra contenido capturado años antes | *Harvest now, decrypt later*. Lectura retrospectiva del historial completo de la cadena |
 
-La industria post-cuántica actual cubre fundamentalmente la **Amenaza A** (firmas resistentes). QRB se posiciona como la primera blockchain que cubre **A y B** simultáneamente. La sección 7.5 detalla la capa B.
+La industria post-cuántica actual cubre fundamentalmente la **Amenaza A** (firmas resistentes). QRB está diseñada explícitamente para cubrir **A y B** — una combinación que no nos consta en ninguna otra blockchain (la capa B es una línea de investigación de Fase 3+, no una funcionalidad ya entregada). La sección 7.5 detalla la capa B.
 
 ### 1.2 La línea temporal se ha contraído
 
@@ -147,7 +147,7 @@ Una L2 sobre Ethereum, en cambio:
 
 QRB adopta los estándares NIST post-cuánticos como base de autenticación:
 
-- **Firmas digitales primarias**: ML-DSA (FIPS 204, CRYSTALS-Dilithium), específicamente **ML-DSA-65** como *default*. Equivalente a 192 bits de seguridad clásica. Firma ~3.309 bytes; clave pública ~1.952 bytes.
+- **Firmas digitales primarias**: ML-DSA (FIPS 204, CRYSTALS-Dilithium), específicamente **ML-DSA-65** como *default*. Equivalente a 192 bits de seguridad clásica. Firma ~3.309 bytes; clave pública ~1.952 bytes. Elegimos el conjunto de parámetros de nivel 3 (ML-DSA-65) en lugar del más pequeño nivel 2 (ML-DSA-44) porque una firma de capa base fija claves en un registro público durante décadas, donde un margen de seguridad generoso a largo plazo importa más que ahorrar ~1 KB por firma; ML-DSA-87 (nivel 5) y FN-DSA quedan disponibles opt-in para quien quiera más margen o firmas más compactas, respectivamente.
 - **Firmas alternativas opt-in**: FN-DSA (FALCON, FIPS 206 — borrador, previsto para finales de 2026–2027) para casos que requieran firmas compactas (~700 bytes); SLH-DSA (SPHINCS+, FIPS 205) para escenarios de máxima conservación basados en hash.
 - **Intercambio de claves**: ML-KEM (FIPS 203, CRYSTALS-Kyber), específicamente ML-KEM-768, para comunicación cifrada entre nodos.
 - **Hash**: Keccak-256 (compatibilidad EVM) y SHA3-512 como precompilado para aplicaciones con margen post-cuántico explícito frente a Grover.
@@ -298,7 +298,7 @@ QRB seguirá un modelo de gobernanza **progresivamente descentralizada**:
 
 QRB se diseña frente a un atacante con:
 
-- Recursos computacionales cuánticos crecientes (CRQC potencial 2028-2032 según consenso experto actualizado).
+- Recursos computacionales cuánticos crecientes (CRQC potencial ~2028-2032 según estimaciones expertas actualizadas; momento exacto genuinamente incierto).
 - Capacidad de *harvest now, decrypt later* sobre el historial público de la cadena.
 - Control de hasta 33% del *stake* (asunción estándar BFT).
 - Acceso completo al código fuente (todo el proyecto es open source MIT/Apache-2.0).
