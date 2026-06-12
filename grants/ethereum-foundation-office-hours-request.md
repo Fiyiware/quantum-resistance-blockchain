@@ -47,6 +47,41 @@ want to make sure I'm pointing my effort where it's genuinely useful to Ethereum
 
 ---
 
+## Versión en español (SOLO para que la entiendas — en el formulario va el inglés de arriba)
+
+> ⚠️ Esto es una traducción para tu comprensión. **No pegues esto en el formulario**;
+> pega el texto en inglés de la sección anterior.
+
+**Contexto — en qué estoy trabajando**
+
+QRB es un proyecto open-source (licencias MIT/Apache-2.0) que construye piezas
+criptográficas post-cuánticas para Ethereum. Tengo una prueba de concepto que funciona:
+un precompile de la EVM, `MLDSAVERIFY`, que verifica firmas ML-DSA-65 (el estándar NIST
+FIPS 204), envuelto como un precompile de `revm` y probado **de principio a fin** — una
+transacción real que llama al precompile se ejecuta a través de un EVM `revm` completo y
+devuelve el resultado esperado. Mi siguiente paso es una cuenta inteligente post-cuántica
+tipo ERC-4337 que lo use, construida en un fork de Reth, con un modelo de coste de gas
+publicado. La intención es subir el precompile aguas arriba (como un EIP y un PR a Reth)
+como bien público, no mantenerlo aislado. Repositorio:
+https://github.com/Fiyiware/quantum-resistance-blockchain
+
+**Sobre qué me gustaría orientación**
+
+1. **Encaje** — ¿este tipo de trabajo (un precompile de ML-DSA reutilizable + una cuenta
+   de account abstraction post-cuántica) encaja en algún ítem actual de vuestro Wishlist
+   o RFP? Si es así, ¿en cuál debería centrarme?
+2. **No duplicar** — ¿hay equipos o proyectos en la EF que ya estén trabajando en
+   verificación de firmas post-cuánticas dentro de la EVM o de los clientes, con los que
+   debería coordinarme en lugar de duplicar?
+3. **Enfoque** — ¿forkear Reth y proponer el precompile como un EIP es la vía adecuada, o
+   sugeriríais un camino distinto?
+
+Soy fundador en solitario, en fase de prueba de concepto, y antes de escalar el trabajo
+quiero sobre todo asegurarme de dirigir mi esfuerzo a donde sea de verdad útil para
+Ethereum.
+
+---
+
 ## After the call (internal notes — fill in)
 
 - Which Wishlist/RFP item they pointed to (name + URL): …
