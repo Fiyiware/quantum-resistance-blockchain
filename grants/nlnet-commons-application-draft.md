@@ -4,13 +4,15 @@
 > final call closed on 1 June 2026 (NGI/EU general-purpose budget exhausted). NLnet's
 > next call (deadline **1 August 2026, 12:00 CEST**) funds only two *thematic* funds —
 > **NGI Taler** (privacy-preserving digital payments) and **NGI Fediversity**
-> (decentralised hosting) — neither of which QRB fits. NLnet still accepts general
-> submissions via the **Open Call** at https://nlnet.nl/propose/ (they route to a
-> fund with budget if one exists), but a general-purpose home for a project like QRB
-> is no longer guaranteed. **Funding strategy is therefore under re-evaluation** — see
-> the note below; the technical content of this document is funder-agnostic and
-> remains reusable for an Ethereum Foundation ESP / Academic Grant or an NLnet Open
-> Call.
+> (decentralised hosting) — neither of which QRB fits. NLnet's **generic Open Call is
+> currently closed and is expected to reopen after summer 2026**, so there is no NLnet
+> route for QRB before the August deadline.
+>
+> **Decision (founder, 12 June 2026): pursue both, EF first.** Primary effort pivots
+> to an **Ethereum Foundation** application now (see `ethereum-foundation-esp-draft.md`)
+> — the better thematic fit, with no European-dimension requirement. NLnet's Open Call
+> is kept as a **secondary track to revisit when it reopens after summer 2026**, reusing
+> this document. The technical content here is funder-agnostic.
 >
 > **New NLnet requirement we already meet**: the 2026 form requires an explicit
 > declaration of generative-AI use. QRB already discloses its AI assistance openly
