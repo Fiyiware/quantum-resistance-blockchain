@@ -1,20 +1,30 @@
 # Ethereum Foundation — Ecosystem Support Program (ESP) — application draft
 
-> **Status**: draft v0.1 — adapted from the (now-deferred) NLnet draft after the NGI
-> Zero Commons Fund closed (June 2026). Target: **Ethereum Foundation ESP** (rolling
-> applications, no fixed deadline) and/or the next **EF Academic Grants** round for the
-> cryptography-research component. EF imposes no European-dimension requirement, which
-> makes it a cleaner thematic fit than NLnet for QRB's post-quantum-Ethereum work.
+> **Status**: draft v0.2 — adapted from the (now-deferred) NLnet draft after the NGI
+> Zero Commons Fund closed (June 2026), then revised to match EF ESP's **actual 2026
+> process**: ESP is **not** a free-form inquiry. You apply to address a **specific
+> Wishlist or RFP item**, or — if no item matches yet — you use **Office Hours** to
+> talk to the team first. EF imposes no European-dimension requirement, which makes it a
+> cleaner thematic fit than NLnet for QRB's post-quantum-Ethereum work.
+>
+> **⚠️ Before submitting, two open actions (see §7 and the appendix):**
+> 1. **Find the matching Wishlist/RFP item** (PQ cryptography / cryptographic primitives
+>    / account abstraction / client work) and tailor §3–§5 to *that item's* wording —
+>    or, if none fits cleanly, **book Office Hours** and lead with the working PoC.
+> 2. **Be ready to receive payment on-chain in ETH** (EF default) and to complete
+>    identity verification + a formal grant letter.
 >
 > **Project**: QRB — Quantum-Resistance Blockchain
 > **Applicant**: Luiggi Leonel Cedeño Bermeo (natural person), GitHub `Fiyiware`
 > **Email**: qrb.grants@proton.me
 > **Repo**: https://github.com/Fiyiware/quantum-resistance-blockchain
 > **Licence**: MIT / Apache-2.0 (dual)
+> **ETH payout address**: TODO — set up a wallet the founder controls for ETH grant payment
 > **Last update**: 12 June 2026
 >
-> ESP general inquiry form: https://esp.ethereum.foundation/applicants — final wording
-> will be mapped to the exact form fields before submitting.
+> ESP: https://esp.ethereum.foundation — browse Wishlist / RFPs / Open Rounds /
+> Office Hours. The Academic Grants rounds remain a parallel route for the Phase 3
+> cryptography-research component.
 
 ---
 
@@ -135,20 +145,45 @@ reference wallet.
 Hourly rates reflect Spanish independent-contractor norms and are below salaried
 Western-European equivalents. The contingency line is honest estimation, not padding.
 
-## 7. Alignment with Ethereum Foundation priorities
+## 7. Entry path and ESP fit
 
-- **Account Abstraction**: QRB's PQ account is ERC-4337-native — AA is precisely the
-  mechanism that lets Ethereum absorb large PQ signatures at the application layer, an
-  EF-aligned thesis.
-- **Post-quantum readiness**: EF's own research roadmap includes PQ signatures and
-  hash-based approaches; QRB is a hands-on prototype + upstreamable precompile, not a
-  competing roadmap.
-- **Client diversity & Reth**: the work targets Reth (Rust), supporting client
-  diversity; the precompile is offered back, not forked away.
-- **Open source / public good**: dual MIT/Apache-2.0, public CI, public issues. No
-  token funds any of this work (see §9).
+ESP supports work that **enables builders** — "strengthening Ethereum's infrastructure,
+expanding the range of tools available to those building on Ethereum, gaining a deeper
+understanding of cryptographic primitives." QRB hits three of these directly: an
+`MLDSAVERIFY` precompile (**infrastructure**), a PQ SDK + reference wallet + smart
+account (**tools for builders**), and a benchmarked, audited ML-DSA-in-EVM
+implementation (**deeper understanding of a cryptographic primitive**).
 
-## 8. Comparison with the state of the art
+Concrete entry path:
+- **If a Wishlist/RFP item matches** (look under post-quantum cryptography, cryptographic
+  primitives, account abstraction, or client/Reth work): apply to *that item* and tailor
+  §3–§5 to its exact wording and deliverables.
+- **If none matches cleanly**: book **Office Hours** ("still exploring possibilities,
+  connect with our team for guidance") and lead with the working end-to-end revm PoC —
+  it is the fastest way to get a real conversation and possibly a tailored scope.
+
+## 8. How this maps to ESP's selection criteria
+
+- **Technical approach** — methodology is concrete and already partly demonstrated: NIST
+  FIPS 204 ML-DSA-65 via `fips204`, wrapped as a `revm` precompile and exercised end-to-end
+  inside a real EVM (see §4). The plan is an incremental Reth fork, not a from-scratch chain.
+- **Ecosystem impact** — the precompile and PQ ERC-4337 account are upstreamable to
+  Ethereum itself (EIP + Reth PR), useful to any EVM chain — a positive-sum public good,
+  not a QRB silo.
+- **Open source** — dual MIT/Apache-2.0, public repo, public CI, public issues; no token
+  funds or gates any of this work (see §10).
+- **Budget** — €35/h tops out below salaried Western-European equivalents; EF expects some
+  flexibility below market rates and this budget already reflects that. Milestone-based,
+  with an honest contingency line.
+- **Experience** — a working Phase 0 prototype + two Rust PoCs are the delivery evidence;
+  external peer review already produced a real security fix and full CI. Single founder,
+  AI-assisted and openly disclosed (see §10); first milestone funds a Rust lead + a
+  cryptographer.
+- **Alignment** — QRB's whole thesis (PQ-native, EVM-compatible, AA-first, upstream-first)
+  is built around Ethereum's own needs and values; it contributes to, rather than competes
+  with, EF's post-quantum direction.
+
+## 9. Comparison with the state of the art
 
 No known project pursues **PQ signatures + PQ privacy + EVM compatibility + AA** together.
 QRL/Zond and Quranium do PQ signatures with weak EVM/AA support; Aleo/Aztec/Monero do
@@ -156,7 +191,7 @@ privacy that is **not** post-quantum (SNARK- or curve-based). QRB's differentiat
 addressing both quantum threats with Ethereum-native tooling; the immediate, fundable
 slice is the `MLDSAVERIFY` precompile + PQ AA account.
 
-## 9. Non-technical / honesty
+## 10. Non-technical / honesty
 
 - **Single founder, AI-assisted, openly disclosed.** Prototype built with substantial
   AI assistance (Anthropic Claude); all architecture/strategy decisions are the human
@@ -169,7 +204,7 @@ slice is the `MLDSAVERIFY` precompile + PQ AA account.
   security fix (block-proposer validation) and full CI; the public review cycle is
   documented in `marketing/reviewer-response.md`.
 
-## 10. Team and contributors
+## 11. Team and contributors
 
 Founder — **Luiggi Leonel Cedeño Bermeo** (`Fiyiware`): product vision, technical
 specification, documentation, external relations; background in digital product / web
@@ -177,7 +212,7 @@ development. The working Phase 0 prototype + PoCs are the delivery evidence. The
 funds onboarding a senior Rust/Reth engineer (lead on the fork) and a cryptographer
 (lattice/STARK; review of the precompile + the Phase 3 confidentiality direction).
 
-## 11. Links
+## 12. Links
 
 - Repository: https://github.com/Fiyiware/quantum-resistance-blockchain
 - Whitepaper (EN): `whitepaper/whitepaper-v0.2.en.md`
@@ -188,11 +223,17 @@ funds onboarding a senior Rust/Reth engineer (lead on the fork) and a cryptograp
 
 ## Appendix — submission checklist (internal)
 
-- [ ] Map sections to the ESP form fields at https://esp.ethereum.foundation/applicants
-      (ESP is a free-form inquiry; keep the first message tight and link the repo).
-- [ ] Decide whether the cryptography-research slice (Phase 3 confidentiality) is better
-      routed to the next **EF Academic Grants** round instead of ESP.
-- [ ] Declare AI assistance explicitly (consistent with the README).
-- [ ] Confirm invoicing as a natural person (NIE as NIF); keep the NIE out of the repo.
+- [ ] **Browse the current Wishlist + RFPs + Open Rounds** at https://esp.ethereum.foundation
+      and identify the item QRB best addresses (post-quantum crypto / cryptographic
+      primitives / account abstraction / Reth-client work). Record the item name + URL.
+- [ ] **If a clear item exists** → apply to it; rewrite §3–§5 to match its exact wording
+      and deliverables. **If not** → book **Office Hours** and open with the working
+      end-to-end revm PoC.
+- [ ] Consider routing the Phase 3 confidentiality (STARK) research to an **EF Academic
+      Grants** round instead of / in addition to ESP.
+- [ ] **Set up an ETH wallet the founder controls** for on-chain grant payment; be ready
+      for identity verification + a formal grant letter. Fill the "ETH payout address"
+      field above (keep any seed phrase private — never in the repo).
+- [ ] Declare AI assistance explicitly in the application (consistent with the README).
 - [ ] Attach repo + whitepaper + CI links; mention the working end-to-end PoC explicitly.
 - [ ] Keep the NLnet Open Call draft warm for when it reopens after summer 2026.
