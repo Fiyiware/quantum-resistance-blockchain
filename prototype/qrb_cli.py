@@ -143,6 +143,27 @@ def cmd_chain_block(args: argparse.Namespace) -> None:
         sys.exit(1)
     print(_json.dumps(block.to_dict(), indent=2))
 
+def cmd_chain_block_inspect(args):
+    chain = Chain(DATA_DIR)
+
+    block = chain.get_block(args.index)
+
+    if block is None:
+        print(f"Bloque {args.index} no encontrado")
+        return
+
+    print(f"Bloque #{block.index}")
+    print(f"Hash anterior: {block.previous_hash}")
+    print(f"Proponente: {block.proposer_address}")
+    print(f"Transacciones: {len(block.transactions)}")
+
+    sig = block.signature.hex()
+
+    if len(sig) > 32:
+        sig = sig[:16] + "..." + sig[-16:]
+
+    print(f"Firma: {sig}")
+
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
@@ -188,6 +209,13 @@ def build_parser() -> argparse.ArgumentParser:
     cb = cs.add_parser("block", help="Mostrar un bloque por indice")
     cb.add_argument("--index", type=int, required=True)
     cb.set_defaults(func=cmd_chain_block)
+
+    cbi = cs.add_parser(
+    "block-inspect",
+    help="Mostrar un bloque en formato legible"
+)
+cbi.add_argument("--index", type=int, required=True)
+cbi.set_defaults(func=cmd_chain_block_inspect)
 
     return parser
 
