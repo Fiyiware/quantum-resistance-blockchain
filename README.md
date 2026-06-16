@@ -24,7 +24,9 @@ This README is deliberately careful to distinguish **implemented**, **designed**
 | Account-based blockchain with signed blocks, transactions and state | ✅ Implemented | `prototype/qrb/` |
 | CLI for wallets, transactions, block production and inspection | ✅ Implemented | `prototype/qrb_cli.py` |
 | End-to-end tests (signatures, tampering, double-spend, proposer impersonation) | ✅ Implemented + CI | `prototype/tests/test_basic.py` |
-| EVM-compatible execution layer with MLDSAVERIFY precompile | 📐 Designed | Whitepaper §3.4 |
+| ML-DSA-65 verification core in Rust (MLDSAVERIFY precompile logic + benchmark) | ✅ Proof of concept + CI | `poc/ml-dsa-precompile/` |
+| MLDSAVERIFY wrapped as a real `revm` precompile, called end-to-end through a full EVM | ✅ Proof of concept + CI | `poc/evm-precompile/` |
+| EVM-compatible execution layer with MLDSAVERIFY precompile (shipped in a Reth fork) | 📐 Designed / Phase 1 | Whitepaper §3.4 |
 | ERC-4337-like Account Abstraction with PQ signatures | 📐 Designed | Whitepaper §3.3 |
 | Optimistic rollup bridge to Ethereum L1 | 📐 Designed | Whitepaper §3.5 |
 | STARK-based confidentiality (stealth addresses, confidential tx, view keys) | 🔬 Research / Phase 3+ vision | Whitepaper §7.5 |
@@ -81,7 +83,7 @@ quantum-resistance-blockchain/
 │   ├── whitepaper-v0.2.md         Source markdown (full whitepaper, Spanish)
 │   ├── whitepaper-v0.2.en.md      Full whitepaper, English
 │   ├── whitepaper-v0.2.pdf        24-page PDF rendering for distribution (Spanish)
-│   └── _build_pdf.js              Reproducible PDF build script (Node + Chrome)
+│   └── _build_pdf.js              Reproducible PDF build (Node + Chrome; `node _build_pdf.js en` for English)
 ├── prototype/
 │   ├── qrb/                       Python package with the prototype
 │   ├── qrb_cli.py                 Command-line interface
@@ -90,8 +92,14 @@ quantum-resistance-blockchain/
 ├── poc/
 │   ├── ml-dsa-precompile/         Rust PoC: ML-DSA-65 verification (MLDSAVERIFY precompile core)
 │   └── evm-precompile/            Rust PoC: that core wrapped as a revm 41 precompile (real EVM interface)
+├── grants/                        Non-dilutive funding applications (Ethereum Foundation, NLnet) + Office Hours prep
 ├── marketing/                     Public launch materials (X thread, launch kit)
+├── docs/                          Auxiliary / internal workflow notes
 ├── .github/workflows/             Continuous integration (GitHub Actions)
+├── CONTRIBUTING.md                How to contribute, conventions, honest compensation model
+├── JOIN.md                        Paid Phase 1 / co-founder / advisor tracks
+├── CODE_OF_CONDUCT.md             Community standards
+├── SECURITY.md                    Vulnerability disclosure policy
 ├── resumen.md                     ~700-word pitch (Spanish)
 ├── summary.en.md                  ~700-word pitch (English)
 ├── README.md                      This file
@@ -148,7 +156,7 @@ See [`prototype/README.md`](prototype/README.md) for full prototype documentatio
 | Phase | Period | Deliverables | Funding |
 |-------|--------|--------------|---------|
 | **0 — Validation** | Q2-Q3 2026 | Whitepaper v0.2 · Python prototype with ML-DSA signatures · Public repo · CI · Initial community | Self-funded |
-| **1 — Public testnet** | Q4 2026 - Q3 2027 | Grants (NLNet, Ethereum Foundation, Optimism RetroPGF) · EVM execution layer · MLDSAVERIFY precompile · ERC-4337-like AA with PQ · Devnet · Public testnet · SDK · 5-10 dApp demos · Optimistic rollup bridge | €100-250K (grants) |
+| **1 — Public testnet** | Q4 2026 - Q3 2027 | Grants (Ethereum Foundation, NLnet, Optimism RetroPGF) · EVM execution layer · MLDSAVERIFY precompile · ERC-4337-like AA with PQ · Devnet · Public testnet · SDK · 5-10 dApp demos · Optimistic rollup bridge | €100-250K (grants) |
 | **2 — Mainnet beta** | Q4 2027 - Q2 2028 | Audits · Production bridge · MiCA-registered token · DEX listings · 50+ contracts | €500K-2M (seed + token) |
 | **3 — GA + Privacy layer** | H2 2028 - 2030 | Sequencer decentralization · STARK confidentiality · Stealth addresses · QKD institutional pilots · Optimistic → ZK rollup migration | Self-sustaining via fees |
 
@@ -160,7 +168,7 @@ Read the full economic and technical model in the whitepaper ([English](whitepap
 
 **Product first, money second.** QRB explicitly rejects the ICO-pre-product model.
 
-1. Non-dilutive grants first: NLNet, Ethereum Foundation, Optimism RetroPGF, Web3 Foundation, Horizon Europe.
+1. Non-dilutive grants first: Ethereum Foundation, NLnet, Optimism RetroPGF, Web3 Foundation, Horizon Europe.
 2. Then demonstrable product + community.
 3. **Only then** — token issuance registered under MiCA with proper legal counsel and a notified whitepaper.
 
@@ -179,7 +187,7 @@ QRB is actively recruiting for Phase 0 and early Phase 1:
 
 **The community has already started building, too:** independent developers have landed merged PRs (regression tests, bug fixes) — see the [contributor graph](https://github.com/Fiyiware/quantum-resistance-blockchain/graphs/contributors). Open issues are labelled [`good-first-issue`](https://github.com/Fiyiware/quantum-resistance-blockchain/labels/good-first-issue) and [`help-wanted`](https://github.com/Fiyiware/quantum-resistance-blockchain/labels/help-wanted).
 
-Phase 1 contributions are **paid work, funded by grants** (see the roadmap and the NLNet application track) — not unpaid token promises. QRB does not offer token allocations in exchange for contributions today. Any future token-based recognition would be decided only after a product exists and a MiCA-compliant token process is in place; it is explicitly out of scope for Phases 0 and 1.
+Phase 1 contributions are **paid work, funded by grants** (see the roadmap and the grant applications in [`grants/`](grants/)) — not unpaid token promises. QRB does not offer token allocations in exchange for contributions today. Any future token-based recognition would be decided only after a product exists and a MiCA-compliant token process is in place; it is explicitly out of scope for Phases 0 and 1.
 
 **Two doors, depending on what you want:**
 
