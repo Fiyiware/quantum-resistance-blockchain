@@ -41,15 +41,17 @@ ingeniero de Rust/Reth y a un criptógrafo.)*
 
 ### Resumen del proyecto — pegar (EN)
 
-> QRB is an open-source project (MIT/Apache-2.0) building post-quantum cryptographic building
-> blocks for Ethereum. The core piece, already working as a proof of concept, is an
-> MLDSAVERIFY EVM precompile that verifies NIST FIPS 204 ML-DSA-65 signatures — wrapped as a
-> revm precompile and exercised end-to-end (a real transaction calls it through a full revm
-> EVM and returns the expected result). Next is a post-quantum ERC-4337 smart account that
-> uses it, built in a Reth fork. The intent is to upstream the precompile (EIP + Reth PR) as
-> a public good. This matters because every ECDSA key exposed on-chain becomes forgeable once
-> a large quantum computer exists, and Ethereum still lacks in-EVM tooling to verify the new
-> NIST post-quantum signatures. Repo: https://github.com/Fiyiware/quantum-resistance-blockchain
+> QRB is an open-source project (MIT/Apache-2.0) helping Ethereum prepare for the quantum
+> era. Once a large quantum computer exists, every ECDSA key ever exposed on-chain becomes
+> forgeable — a direct threat to the funds and identities of Ethereum users. Ethereum still
+> lacks in-EVM tooling to verify the new NIST post-quantum signatures, and that gap is what
+> we're filling. We've built a working proof of concept: an MLDSAVERIFY EVM precompile that
+> verifies NIST FIPS 204 ML-DSA-65 signatures, wrapped as a revm precompile and exercised
+> end-to-end (a real transaction calls it through a full revm EVM and returns the expected
+> result). Next is a post-quantum ERC-4337 smart account that uses it, in a Reth fork. We
+> intend to upstream the precompile to Ethereum itself — as an EIP and a Reth PR — so the
+> whole ecosystem benefits, not just our project. Repo:
+> https://github.com/Fiyiware/quantum-resistance-blockchain
 
 ### ¿Cómo esperas que ESP pueda ayudarte? — pegar (EN)
 
