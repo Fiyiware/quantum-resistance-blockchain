@@ -275,6 +275,26 @@ def test_apply_transaction_rejects_zero_amount() -> None:
     except ValueError as exc:
         assert "positivo" in str(exc), f"rechazado por otra razón: {exc}"
 
+def test_block_lookup_found_and_not_found() -> None:
+    founder = Wallet.create("founder")
+
+    with tempfile.TemporaryDirectory() as tmp:
+        chain = Chain(Path(tmp))
+
+        chain.init_genesis(
+            founder_address=founder.address,
+            founder_supply=1000,
+        )
+
+        block = chain.get_block(0)
+
+        assert block is not None
+        assert block.index == 0
+
+        missing = chain.get_block(999)
+
+        assert missing is None
+
 
 def run_all() -> None:
     tests = [
@@ -289,6 +309,7 @@ def run_all() -> None:
         test_load_json_valid_file,
         test_apply_transaction_rejects_negative_amount,
         test_apply_transaction_rejects_zero_amount,
+        test_block_lookup_found_and_not_found,
     ]
     for t in tests:
         print(f"  -> {t.__name__} ... ", end="", flush=True)
