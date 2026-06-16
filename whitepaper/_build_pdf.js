@@ -1,21 +1,22 @@
 #!/usr/bin/env node
 /**
- * Convierte whitepaper-v0.2.md a whitepaper-v0.2.pdf.
+ * Convierte el whitepaper de Markdown a PDF.
  *
  * Cómo funciona:
  *   1) marked convierte Markdown → HTML.
  *   2) Se envuelve en una plantilla con CSS para PDF profesional A4.
- *   3) Chrome headless imprime el HTML como PDF.
+ *   3) Chrome / Edge / Chromium headless imprime el HTML como PDF.
  *
  * Requisitos:
  *   - Node.js (ya instalado)
- *   - Chrome o Edge (ya instalado)
+ *   - Chrome, Edge o Chromium
  *   - Paquete 'marked' (npm install marked)
  *
  * Uso:
  *   cd whitepaper
  *   npm install marked
- *   node _build_pdf.js
+ *   node _build_pdf.js          # español (por defecto)  -> whitepaper-v0.2.pdf
+ *   node _build_pdf.js en       # inglés                 -> whitepaper-v0.2.en.pdf
  */
 
 const fs = require("fs");
@@ -24,16 +25,29 @@ const { execFileSync } = require("child_process");
 const { marked } = require("marked");
 
 const here = __dirname;
-const mdPath = path.join(here, "whitepaper-v0.2.md");
-const htmlPath = path.join(here, "_whitepaper-v0.2.html");
-const pdfPath = path.join(here, "whitepaper-v0.2.pdf");
+
+// --- Selección de idioma -----------------------------------------------------
+const lang = (process.argv[2] || "es").toLowerCase();
+const VARIANTS = {
+  es: { md: "whitepaper-v0.2.md",    pdf: "whitepaper-v0.2.pdf",    htmlLang: "es", title: "QRB Whitepaper v0.2" },
+  en: { md: "whitepaper-v0.2.en.md", pdf: "whitepaper-v0.2.en.pdf", htmlLang: "en", title: "QRB Whitepaper v0.2 (EN)" },
+};
+const variant = VARIANTS[lang];
+if (!variant) {
+  console.error("ERROR: idioma no soportado '" + lang + "'. Usa 'es' o 'en'.");
+  process.exit(1);
+}
+
+const mdPath = path.join(here, variant.md);
+const htmlPath = path.join(here, "_" + variant.pdf.replace(/\.pdf$/, ".html"));
+const pdfPath = path.join(here, variant.pdf);
 
 if (!fs.existsSync(mdPath)) {
   console.error("ERROR: no se encuentra " + mdPath);
   process.exit(1);
 }
 
-console.log("Leyendo Markdown...");
+console.log("Leyendo Markdown (" + lang + ")...");
 const md = fs.readFileSync(mdPath, "utf-8");
 
 console.log("Convirtiendo Markdown a HTML...");
@@ -105,10 +119,10 @@ const css = `
 `;
 
 const html = `<!DOCTYPE html>
-<html lang="es">
+<html lang="${variant.htmlLang}">
 <head>
 <meta charset="utf-8">
-<title>QRB Whitepaper v0.2</title>
+<title>${variant.title}</title>
 <style>${css}</style>
 </head>
 <body>
@@ -119,21 +133,48 @@ ${bodyHtml}
 console.log("Guardando HTML intermedio...");
 fs.writeFileSync(htmlPath, html, "utf-8");
 
-console.log("Localizando Chrome / Edge...");
-const candidates = [
+console.log("Localizando Chrome / Edge / Chromium...");
+// Rutas habituales en Windows...
+const winCandidates = [
   "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
   "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe",
   "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe",
   "C:\\Program Files\\Microsoft\\Edge\\Application\\msedge.exe",
 ];
-const browser = candidates.find((p) => fs.existsSync(p));
+// ...y nombres de binario habituales en Linux/macOS (se resuelven vía PATH).
+const nixCandidates = [
+  "google-chrome", "google-chrome-stable", "chromium", "chromium-browser",
+  "microsoft-edge", "/usr/bin/google-chrome", "/usr/bin/chromium",
+  "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+];
+
+function resolveBrowser() {
+  for (const p of winCandidates) {
+    if (fs.existsSync(p)) return p;
+  }
+  for (const name of nixCandidates) {
+    if (name.includes("/") || name.includes("\\")) {
+      if (fs.existsSync(name)) return name;
+    } else {
+      try {
+        const resolved = execFileSync("command", ["-v", name], { shell: true })
+          .toString().trim();
+        if (resolved) return resolved;
+      } catch (_) { /* no está, probar siguiente */ }
+    }
+  }
+  return null;
+}
+
+const browser = resolveBrowser();
 if (!browser) {
-  console.error("ERROR: no se encontró Chrome ni Edge.");
+  console.error("ERROR: no se encontró Chrome, Edge ni Chromium.");
+  console.error("Instala uno de ellos o ejecuta este script en una máquina que lo tenga.");
   process.exit(1);
 }
 console.log("  Navegador: " + browser);
 
-const fileUrl = "file:///" + htmlPath.replace(/\\/g, "/");
+const fileUrl = "file://" + htmlPath.replace(/\\/g, "/").replace(/^([A-Za-z]:)/, "/$1");
 
 console.log("Imprimiendo a PDF...");
 execFileSync(

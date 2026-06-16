@@ -124,9 +124,11 @@ If you want to talk about anything beyond that (a paid role from day one, co-fou
 
 ## Code of conduct
 
-Be direct, be kind, be technically honest. No personal attacks, no harassment, no bad-faith engagement. Disagreement on technical or strategic decisions is welcome and expected — disagreement about whether someone deserves to be in the room is not.
+Be direct, be kind, be technically honest. Disagreement on technical or strategic decisions is welcome and expected — disagreement about whether someone deserves to be in the room is not.
 
-If something happens that needs handling privately, email `qrb.grants@proton.me` (until we have a dedicated address).
+The full version lives in [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md). If something happens that needs handling privately, email `qrb.grants@proton.me` (until we have a dedicated address).
+
+Security issues have their own process — see [SECURITY.md](SECURITY.md).
 
 ---
 
