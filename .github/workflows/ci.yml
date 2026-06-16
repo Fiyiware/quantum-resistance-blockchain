@@ -36,3 +36,28 @@ jobs:
 
       - name: Run end-to-end tests
         run: python tests/test_basic.py
+
+  poc-rust:
+    name: Rust PoCs (ML-DSA precompile)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Cache cargo build artifacts
+        uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: |
+            poc/ml-dsa-precompile
+            poc/evm-precompile
+
+      - name: ml-dsa-precompile — build and run (executes its assertions)
+        working-directory: poc/ml-dsa-precompile
+        run: cargo run --release
+
+      - name: evm-precompile — unit + end-to-end tests
+        working-directory: poc/evm-precompile
+        run: cargo test --all-targets

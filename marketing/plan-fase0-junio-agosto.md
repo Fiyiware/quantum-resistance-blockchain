@@ -1,83 +1,76 @@
-# Plan de Fase 0 — de junio al 1 de agosto de 2026
+# Plan de Fase 0 — junio en adelante (foco Ethereum Foundation)
 
-Hoja de ruta semanal desde el lanzamiento (2 jun) hasta la fecha límite de la
-solicitud de NLNet/NGI Zero Commons Fund (**1 de agosto**, próxima convocatoria estimada).
+Hoja de ruta práctica desde mediados de junio de 2026. **Cambio de plan respecto a la
+versión anterior:** el NGI Zero Commons Fund de NLnet **cerró** (junio 2026) y su Open
+Call genérica no reabre hasta **después del verano de 2026**. La vía principal pasa a ser
+la **Ethereum Foundation (ESP)**, que es mejor encaje temático y **no tiene fecha límite
+fija** (es de convocatoria continua, vía Wishlist/RFP + Office Hours). NLnet queda como
+**plan B** para después del verano.
 
 ## Principio rector
 
-**La subvención de NLNet es la prioridad #1.** Es lo que desbloquea la Fase 1
-(trabajo pagado). NO depende de seguidores ni de impresiones en X — se evalúa por
-el whitepaper, el repositorio y la propuesta escrita. Las redes sociales son un
-canal secundario y de efecto compuesto: construyen comunidad y atraen
-colaboradores, pero no son la puerta del dinero. No medir el éxito por likes.
+**Conseguir financiación no dilutiva para la Fase 1 es la prioridad #1.** Es lo que
+desbloquea el trabajo pagado. No depende de seguidores ni de impresiones en X — se evalúa
+por el whitepaper, el repositorio y la propuesta. Las redes son un canal secundario: 
+construyen comunidad y atraen colaboradores, pero no son la puerta del dinero.
+
+**El primer paso concreto, ahora mismo, es enviar la solicitud de Office Hours de la EF**
+(ya está todo preparado en `grants/`). Es orientación, no dinero: sirve para saber a qué
+ítem de Wishlist/RFP apuntar antes de invertir más.
 
 ## Qué es "éxito" en Fase 0 (expectativas realistas)
 
 No es viralidad. Es:
 
-- ✅ Solicitud de NLNet **enviada antes del 1 de agosto** (idealmente unos días antes).
-- ✅ Prototipo un poco más sólido (cerrar 1-2 `good-first-issue`).
-- ✅ Un puñado de personas **genuinamente interesadas** (no miles).
-- ✅ Al menos **1 conversación seria** con un posible colaborador/co-fundador.
-
-Si al 1 de agosto tienes eso, Fase 0 es un éxito — aunque X tenga 200 seguidores y no 20.000.
+- ✅ **Solicitud de Office Hours de la EF enviada** y, idealmente, llamada realizada.
+- ✅ Saber **a qué ítem de Wishlist/RFP** apuntar (o si conviene Academic Grants).
+- ✅ **Solicitud de grant de la EF enviada** una vez claro el encaje.
+- ✅ Prototipo un poco más sólido (cerrar 1-2 `good-first-issue`; PoCs de Rust en CI ✓ hecho).
+- ✅ Un puñado de personas **genuinamente interesadas** y **al menos 1 conversación seria**
+  con un posible colaborador/co-fundador.
 
 ---
 
-## Calendario semanal
+## Pasos (sin calendario rígido — la EF es de convocatoria continua)
 
-### Semana 1 (2–8 jun) — Cimientos de distribución
-- Publicar el **hilo en inglés** (`marketing/x-thread-en.md`).
-- Crear cuentas: **Reddit**, **Telegram**, **Hacker News**. NO postear el proyecto aún.
-- "Calentar" las cuentas: en Reddit, comentar de forma genuina en r/ethereum, r/cryptography, r/postquantum unos días (ganar algo de karma). En Telegram, unirse a 3-5 grupos de cripto PQ / Ethereum y solo leer/participar.
-- Revisar el borrador de NLNet (`grants/nlnet-commons-application-draft.md`) y anotar qué falta.
+### Ahora — Contacto con la EF
+- **Enviar el formulario de Office Hours** con el texto preparado
+  (`grants/ethereum-foundation-office-hours-formulario-respuestas.md`).
+- Tener a mano el guion de la llamada (`grants/ethereum-foundation-office-hours-guion-es.md`).
+- Montar una **wallet de ETH** que controles (la EF paga los grants on-chain en ETH).
 
-### Semana 2 (9–15 jun) — Primer alcance dirigido
-- **Hacker News**: un "Show HN" con el README del repo (cuenta nueva vale).
-- **Reddit**: 1 post en r/ethereum o r/postquantum, **enmarcado como petición de feedback**, no como anuncio.
-- **DMs**: lista de 10-20 personas concretas (criptógrafos PQ, gente de proyectos adyacentes). Mensajes personalizados, no copia-pega.
-- Empezar a rellenar el formulario real de NLNet.
+### Tras la llamada — Solicitud
+- Anotar a qué ítem de Wishlist/RFP te orientan.
+- Adaptar la solicitud (`grants/ethereum-foundation-esp-draft.md`) a ese ítem y enviarla.
 
-### Semana 3 (16–22 jun) — Foco NLNet
-- Trabajo principal: completar la solicitud de NLNet (hitos, presupuesto, plan de trabajo).
-- Mantener: interacción diaria ligera en X / comunidades (15 min/día).
+### En paralelo — Credibilidad técnica del repo
+- Cerrar **1-2 `good-first-issue`**. Un repo con actividad reciente impresiona al evaluador.
+- (Opcional) Generar el PDF del whitepaper en inglés desde tu PC: `cd whitepaper && node _build_pdf.js en`.
+- Mantener verde la CI (ahora cubre también los PoCs de Rust).
 
-### Semana 4 (23–29 jun) — Borrador NLNet listo para revisión
-- Terminar el borrador completo de la solicitud.
-- Pedir **revisión externa** del borrador (alguien técnico, aunque sea por DM).
-- Compartir avances del proyecto (un mini-update en X: "esto he mejorado esta semana").
+### En paralelo — Comunidad (efecto compuesto, 15 min/día)
+- **Hacker News**: un "Show HN" con el README del repo.
+- **Reddit**: post en r/ethereum o r/postquantum **enmarcado como petición de feedback**.
+- **Telegram / Discord**: unirse a comunidades de cripto-PQ / Ethereum, participar de verdad.
+- **DMs**: 10-20 personas concretas (criptógrafos PQ, proyectos adyacentes), mensajes personalizados.
 
-### Semana 5 (30 jun–6 jul) — Credibilidad técnica
-- Cerrar **1-2 `good-first-issue`** del repo (ej. tests con pytest, CI con ruff/black). Un repo con actividad reciente da mucha mejor impresión a un evaluador.
-- (Opcional) Generar el PDF del whitepaper en inglés desde tu PC.
-
-### Semana 6 (7–13 jul) — Más alcance + colaboradores
-- Segunda ronda de outreach a comunidades nuevas (Discord de criptografía PQ, foros).
-- Si surgió interés de algún colaborador, tener esa conversación (ver `JOIN.md`).
-
-### Semana 7 (14–20 jul) — Finalizar NLNet
-- Pulir y revisar la solicitud entera. Corregir, leer en voz alta, comprobar enlaces.
-
-### Semana 8 (21–27 jul) — ENVIAR (con margen)
-- **Enviar la solicitud de NLNet esta semana**, NO esperar al 1 de agosto.
-- Enviar con días de margen evita desastres de última hora (caídas de la web, dudas).
-
-### Semana 9 (28 jul–1 ago) — Colchón
-- Margen por si algo se retrasa. Fecha límite absoluta: **1 de agosto**.
-- Si ya está enviada: descansar y planificar la espera (la decisión de NLNet tarda ~2-3 meses).
+### Después del verano — Plan B
+- Cuando reabra la **Open Call de NLnet**, valorar enviar también allí
+  (`grants/nlnet-commons-application-draft.md` está listo para reusar).
 
 ---
 
 ## Prioridad de canales de distribución (de más fácil a más difícil)
 
-1. **Telegram / Discord** — te unes a comunidades existentes, tomas su público. No necesitas seguidores.
+1. **Telegram / Discord** — te unes a comunidades existentes. No necesitas seguidores.
 2. **Hacker News** — meritocrático, cuenta nueva vale, público = devs.
-3. **Reddit** — el más estricto; necesita karma/historial y framing de "feedback", no de anuncio.
+3. **Reddit** — el más estricto; necesita karma/historial y framing de "feedback".
 4. **X** — efecto compuesto a largo plazo; no esperar resultados rápidos con cuenta nueva.
 
 ## Reglas de oro
 
-- **Autenticidad > volumen.** Nada de automatizar creación de cuentas o spam: en Reddit/Telegram lleva a baneos y daña la credibilidad, que es tu activo principal.
-- **No medir el éxito en likes.** Medirlo en: solicitud enviada, repo mejorado, conversaciones reales.
+- **Autenticidad > volumen.** Nada de automatizar cuentas o spam: lleva a baneos y daña la
+  credibilidad, que es tu activo principal.
+- **No medir el éxito en likes.** Medirlo en: contacto con la EF, solicitud enviada, repo mejorado, conversaciones reales.
 - **15 min/día de comunidad** es sostenible; 3 horas un día y nada el resto, no.
-- **El grant primero.** Si una semana hay que elegir entre redes y avanzar NLNet, gana NLNet.
+- **El grant primero.** Si una semana hay que elegir entre redes y avanzar la solicitud de la EF, gana la EF.

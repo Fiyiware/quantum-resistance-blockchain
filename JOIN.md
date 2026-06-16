@@ -9,9 +9,9 @@ This document exists because the README's *"Looking for collaborators"* section 
 ## What QRB is honestly, today
 
 - **Currently a single-founder project, actively looking for the right one or two people to change that.** I am not pretending there's a team behind me, and I'm not pretending I can do this alone forever — that's why this file exists.
-- **Phase 0 only.** Working Python prototype, 24-page whitepaper, public repo with CI, MIT licensed, NLNet application in flight. Nothing more, nothing less. The roadmap is real but it is unfunded past Phase 0 self-funding.
-- **A real bet on post-quantum L2.** Not a meme. Read the [Why now](README.md#why-now) section of the README. The market window is genuinely narrow (the 2028-2032 range by current expert estimates; exact timing uncertain), the funding ecosystem (NLNet, EF, Optimism RetroPGF) is genuinely open, and there is genuinely no project combining ML-DSA auth + EVM + PQ privacy + AA + QKD-readiness as a roadmap target.
-- **Public-launched.** X account `@QRB_PQ`, GitHub repo public, NLNet pre-application underway. There is no "stealth phase" to bring you into — the secret is out and the work is the secret.
+- **Phase 0 only.** Working Python prototype, 24-page whitepaper, public repo with CI, MIT licensed, grant applications in progress (Ethereum Foundation first). Nothing more, nothing less. The roadmap is real but it is unfunded past Phase 0 self-funding.
+- **A real bet on post-quantum L2.** Not a meme. Read the [Why now](README.md#why-now) section of the README. The market window is genuinely narrow (the 2028-2032 range by current expert estimates; exact timing uncertain), the funding ecosystem (Ethereum Foundation, NLnet, Optimism RetroPGF) is genuinely open, and there is genuinely no project combining ML-DSA auth + EVM + PQ privacy + AA + QKD-readiness as a roadmap target.
+- **Public-launched.** X account `@QRB_PQ`, GitHub repo public, Ethereum Foundation outreach underway. There is no "stealth phase" to bring you into — the secret is out and the work is the secret.
 
 I would rather you read all of that and pass than join on a misread.
 
@@ -27,9 +27,9 @@ Not "Rust dev with X years of experience". I'm looking for one of these specific
 
 - Fork Reth and add the `MLDSAVERIFY` precompile (or equivalent) for ML-DSA signatures.
 - Implement the rollup data-availability path against Ethereum L1.
-- Run a single-node devnet end-to-end before the NLNet milestone review.
+- Run a single-node devnet end-to-end before the first grant milestone review.
 
-The NLNet grant explicitly lists this work. If you join, you are budgeted into the application. If we don't land NLNet, we go to EF Esports / Optimism RetroPGF together — that is part of the deal we'll discuss.
+The grant application explicitly lists this work. If you join, you are budgeted into it. If the Ethereum Foundation route doesn't land, we go to NLnet's Open Call / Optimism RetroPGF together — that is part of the deal we'll discuss.
 
 ### 2. Cryptographer with lattice / STARK background
 
@@ -43,7 +43,7 @@ Co-authorship is the currency I have to offer here, plus paid hours if a grant c
 
 ### 3. Frontend / wallet engineer
 
-For Phase 1 deliverables: a working PQ wallet (browser-based or Electron), a simple block explorer, a faucet for the testnet. Less senior than #1 and #2 but the visible surface area of the project — if QRB has a wallet people can actually click on by Q3 2027, the second NLNet milestone is much easier to defend.
+For Phase 1 deliverables: a working PQ wallet (browser-based or Electron), a simple block explorer, a faucet for the testnet. Less senior than #1 and #2 but the visible surface area of the project — if QRB has a wallet people can actually click on by Q3 2027, the second grant milestone is much easier to defend.
 
 ### 4. Regulation / MiCA legal mind
 
@@ -57,7 +57,7 @@ If you fit none of the four cleanly but you think you're useful, write anyway. S
 
 I'm not committing to any specific structure before talking to you. But to make the conversation concrete, these are the three shapes I'd consider:
 
-**A. Paid Phase 1 lead.** You join as a named contributor on the NLNet application (or an alternative grant). The grant pays you for the milestone work at the reference rate (35 €/h, some lines 25-30 €/h, negotiable upward for a lead). No equity, no token, no co-founder title. You can leave when the milestone ends. Lowest-commitment shape.
+**A. Paid Phase 1 lead.** You join as a named contributor on the grant application (Ethereum Foundation first, or an alternative grant). The grant pays you for the milestone work at the reference rate (35 €/h, some lines 25-30 €/h, negotiable upward for a lead). No equity, no token, no co-founder title. You can leave when the milestone ends. Lowest-commitment shape.
 
 **B. Technical co-founder.** You commit to QRB for the medium-to-long term. We negotiate compensation, scope, and a documented path to formal co-founder structure once a fiscal vehicle exists (Phase 2, after the first real raise). You sit in on the strategic decisions: roadmap, fundraising, hires. The specifics of that path are exactly the kind of thing that belongs in a private call, not a public README — but the door is open.
 
@@ -69,7 +69,7 @@ I'm not committing to any specific structure before talking to you. But to make 
 
 - **Promise you a token allocation today.** Not because I'm hiding one — there is no token, and the funding philosophy explicitly forbids one before product + MiCA. If you require a token-up-front, we will not work together.
 - **Pretend the project is more advanced than it is.** Phase 0 is Phase 0. If you join, you will hit the same edges I am hitting today.
-- **Move faster than NLNet's timeline allows.** The grant calendar (submit by 1 Aug 2026, decision ~3-4 months later) sets the pace for paid roles. If you need income by September 2026, this isn't the path.
+- **Move faster than the grant timeline allows.** Grant decisions take time (often several months from application to funds in hand), and that sets the pace for paid roles. If you need income within a month or two, this isn't the path.
 - **Hide the AI assistance.** Read the [AI assistance disclosure](README.md#ai-assistance-disclosure). I use Claude heavily. The director-executor model is non-negotiable on my side. If that's a dealbreaker, save us both the time.
 
 ---

@@ -69,7 +69,7 @@ Fase X" — eso da MÁS credibilidad que improvisar.
 ## 🏛️ Negocio / regulación / financiación
 
 **"¿Cómo vas a ganar dinero / cuándo el token?"**
-> Orden estricto: grants no dilutivos primero (NLNet, EF, Optimism) → producto + comunidad → solo entonces token, registrado bajo MiCA. Nunca token antes de producto. La sostenibilidad viene del valor, no de la especulación.
+> Orden estricto: grants no dilutivos primero (Ethereum Foundation, NLnet, Optimism) → producto + comunidad → solo entonces token, registrado bajo MiCA. Nunca token antes de producto. La sostenibilidad viene del valor, no de la especulación.
 
 **"Ethereum va a migrar a PQ, no os necesita."**
 > Cierto, y es bueno para todos. Pero la EF estima 4-7 años para migrar L1. QRB cubre ese hueco para quien no puede esperar: RWA, custodios institucionales, compliance NIS2/MiCA.

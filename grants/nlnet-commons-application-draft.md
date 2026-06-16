@@ -1,8 +1,34 @@
-# NLNet NGI Zero Commons Fund — application draft
+# NLnet / open-source grant — application draft
 
-> **Status**: draft v0.3 — work in progress. NGI Assure closed its final call in 2023; this application now targets the **NGI Zero Commons Fund**, which runs rolling calls roughly every two months (the call that closed on 1 June 2026 was just missed; next expected call ~1 August 2026 — confirm the exact date before submitting).
+> **⚠️ Status (12 June 2026): the NGI Zero Commons Fund has closed.** Its 13th and
+> final call closed on 1 June 2026 (NGI/EU general-purpose budget exhausted). NLnet's
+> next call (deadline **1 August 2026, 12:00 CEST**) funds only two *thematic* funds —
+> **NGI Taler** (privacy-preserving digital payments) and **NGI Fediversity**
+> (decentralised hosting) — neither of which QRB fits. NLnet's **generic Open Call is
+> currently closed and is expected to reopen after summer 2026**, so there is no NLnet
+> route for QRB before the August deadline.
 >
-> **Target program**: NGI Zero Commons Fund — https://nlnet.nl/commonsfund/ (grant range €5,000–€50,000; requires a clear European Dimension)
+> **Decision (founder, 12 June 2026): pursue both, EF first.** Primary effort pivots
+> to an **Ethereum Foundation** application now (see `ethereum-foundation-esp-draft.md`)
+> — the better thematic fit, with no European-dimension requirement. NLnet's Open Call
+> is kept as a **secondary track to revisit when it reopens after summer 2026**, reusing
+> this document. The technical content here is funder-agnostic.
+>
+> **New NLnet requirement we already meet**: the 2026 form requires an explicit
+> declaration of generative-AI use. QRB already discloses its AI assistance openly
+> (README + §10 of this draft), so this is a non-issue for us.
+>
+> **Budget caps (unchanged)**: a first proposal for a new project may request up to
+> **€50,000**; the €150,000 ceiling requires prior completed NGI0 phases. Projects
+> over €50k accumulated may face an independent end-of-grant security audit gating
+> final payment. All outputs must be under a free/open-source licence (QRB is
+> MIT/Apache-2.0 — compliant).
+>
+> ---
+>
+> **Original target (now closed)**: NGI Zero Commons Fund — grant range €5,000–€50,000;
+> required a clear European Dimension. The sections below were written for it and
+> still apply, with minor relabelling, to any of the funders under re-evaluation.
 >
 > **Project**: QRB — Quantum-Resistance Blockchain
 >
@@ -12,9 +38,9 @@
 >
 > **Maintainer of the draft**: Fiyiware (Luiggi Leonel Cedeño Bermeo)
 >
-> **Last update**: 11 June 2026
+> **Last update**: 12 June 2026
 
-This document mirrors the typical sections of the NLNet submission form. Final wording and order will be adjusted to match the exact fields when copying into the online form at https://nlnet.nl/propose/.
+This document mirrors the typical sections of the NLnet submission form. Final wording and order will be adjusted to match the exact fields of whichever funder is chosen.
 
 ---
 

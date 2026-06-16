@@ -140,7 +140,7 @@ Estado actual:
 ✅ Whitepaper v0.2 publicado (PDF, 24 pp)
 ✅ Prototipo Python funcional con firmas Dilithium reales
 ✅ Open source MIT/Apache-2.0
-🔜 Solicitud de grants a NLNet, @ethereumfndn, Optimism
+🔜 Solicitud de grants a @ethereumfndn (ESP), NLnet, Optimism
 
 Buscando colaboradores:
 - Dev Rust/Go (blockchain client)
@@ -156,7 +156,7 @@ DMs abiertos.
 
 Filosofía de financiación:
 
-1️⃣ Grants no dilutivos (NLNet, EF, Optimism)
+1️⃣ Grants no dilutivos (Ethereum Foundation, NLnet, Optimism)
 2️⃣ Producto demostrable + comunidad
 3️⃣ Solo entonces token, registrado bajo MiCA
 
