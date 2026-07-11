@@ -1,5 +1,16 @@
 # Ethereum Foundation — Ecosystem Support Program (ESP) — application draft
 
+> **🛑 OUTCOME (July 2026): this route is closed — do not submit.** The Office Hours
+> request was answered by the EF on 22 June 2026: QRB **is not a fit for an ESP grant**,
+> because execution-layer PQ signature verification via a precompile, with migration
+> through account abstraction, is the **active mandate of the EF Protocol cluster's
+> Post-Quantum team** ([pq.ethereum.org](https://pq.ethereum.org)) — it is not an open
+> gap. The EF's recommendation is to engage the public PQ process directly: the team's
+> living roadmap/FAQ, the All Core Devs Post-Quantum breakout calls, and
+> [EIP-8141](https://eips.ethereum.org/EIPS/eip-8141) as the intended migration path.
+> See `docs/pivote-pq-publico-julio-2026.md` for the resulting plan. This draft is kept
+> as historical record.
+
 > **Status**: draft v0.2 — adapted from the (now-deferred) NLnet draft after the NGI
 > Zero Commons Fund closed (June 2026), then revised to match EF ESP's **actual 2026
 > process**: ESP is **not** a free-form inquiry. You apply to address a **specific

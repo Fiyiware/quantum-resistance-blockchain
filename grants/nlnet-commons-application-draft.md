@@ -1,5 +1,15 @@
 # NLnet / open-source grant — application draft
 
+> **🛑 UPDATE (July 2026): if the NLnet Open Call reopens, this draft must NOT be
+> submitted as written.** The EF's Office Hours feedback (22 June 2026) confirmed that
+> the core premise here — a PQ-native L2 because Ethereum cannot migrate in time — is
+> superseded: the EF's own Post-Quantum team ([pq.ethereum.org](https://pq.ethereum.org))
+> is actively delivering PQ precompiles + account-abstraction migration on L1. Any
+> future NLnet application must be reframed around what remains genuinely open: the
+> post-quantum **confidentiality** research line (whitepaper §7.5) and/or open tooling
+> that serves the public PQ migration (test vectors, benchmarks, reference PQ smart
+> accounts). See `docs/pivote-pq-publico-julio-2026.md`.
+
 > **⚠️ Status (12 June 2026): the NGI Zero Commons Fund has closed.** Its 13th and
 > final call closed on 1 June 2026 (NGI/EU general-purpose budget exhausted). NLnet's
 > next call (deadline **1 August 2026, 12:00 CEST**) funds only two *thematic* funds —

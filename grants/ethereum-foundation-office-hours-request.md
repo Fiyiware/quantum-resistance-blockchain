@@ -1,5 +1,16 @@
 # EF ESP — Office Hours request (ready to paste)
 
+> **🛑 OUTCOME (July 2026): sent and answered — goal achieved, request closed.**
+> Submitted 16 June 2026 (auto-acknowledged by the ESP team); substantive written reply
+> received 22 June 2026. The answer to the call's core question ("does this duplicate an
+> EF post-quantum effort?") is **yes**: precompile-based PQ signature verification +
+> account-abstraction migration is the active mandate of the EF's Post-Quantum team
+> ([pq.ethereum.org](https://pq.ethereum.org)). No ESP grant fit; recommended path is
+> the public PQ process (roadmap/FAQ, ACD PQ breakout calls,
+> [EIP-8141](https://eips.ethereum.org/EIPS/eip-8141)). Exactly the steer this request
+> was designed to get **before** investing in the Reth fork — it worked. Follow-up plan:
+> `docs/pivote-pq-publico-julio-2026.md`.
+
 > **What this is**: text for the EF ESP **Office Hours** request form
 > (https://esp.ethereum.foundation → Office Hours). Office Hours is a short, informal
 > 20-minute call for **non-financial guidance** — *not* a funding application and *not* a

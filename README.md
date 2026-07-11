@@ -16,6 +16,24 @@ This README is deliberately careful to distinguish **implemented**, **designed**
 
 ---
 
+## ⚠️ Strategic update — July 2026: Ethereum is doing this at L1. QRB repositions.
+
+In June 2026 we took the Phase 0 work to the Ethereum Foundation's ESP **Office Hours**, exactly as planned. The EF's feedback (22 June 2026) was direct, and after independent verification it is correct: **execution-layer PQ signature verification via a precompile, with migration through account abstraction, is the active mandate of the Post-Quantum team in the EF Protocol cluster. It is not an open gap.**
+
+The EF runs a dedicated Post-Quantum programme — [pq.ethereum.org](https://pq.ethereum.org) — with 10+ client teams involved, research prizes, fork milestones targeting ~2029, and [EIP-8141](https://eips.ethereum.org/EIPS/eip-8141) (native account abstraction) as the intended migration path.
+
+This supersedes the central market premise of this project as originally framed (whitepaper §1.4: "existing L1s cannot realistically migrate in time"). We committed from day one to credibility over hype, so here is the honest consequence:
+
+- **QRB will not pursue a competing PQ L2.** "A PQ-native chain, because Ethereum cannot migrate in time" no longer describes reality.
+- **The Phase 0 artifacts are redirected to the public PQ process.** The ML-DSA verification PoCs (`poc/`), the benchmark/KAT work and the PQ smart-account design map directly onto the EF PQ team's precompile + account-abstraction roadmap. We engage through the public channels: the team's living roadmap and FAQ at [pq.ethereum.org](https://pq.ethereum.org), and the All Core Devs Post-Quantum breakout calls.
+- **What remains QRB's own research line is Threat B: post-quantum *confidentiality*** (STARK-based privacy with view keys — whitepaper §7.5). The EF programme covers authentication, not privacy; to our knowledge that gap is still open.
+- **Grant applications are on hold** pending repositioning — see the status notes in `grants/`.
+- The sections below and the whitepaper predate this update and are kept unchanged as the historical record until whitepaper v0.3. Read them through this lens.
+
+The Phase 0 engineering loses none of its validity — what changed is where it is most useful. Finding this out in Phase 0, before taking anyone's money, is exactly what Phase 0 was for.
+
+---
+
 ## Status — what exists today vs what is on the roadmap
 
 | Component | Status | Reference |

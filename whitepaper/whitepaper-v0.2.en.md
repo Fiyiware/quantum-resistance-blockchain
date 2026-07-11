@@ -4,6 +4,8 @@
 
 > 🌐 **Language / Idioma:** **English** · [Español](whitepaper-v0.2.md)
 
+> **⚠️ Status note (July 2026).** The central market premise of this document (§1.4: existing L1s cannot realistically migrate in time) has been superseded: the Ethereum Foundation runs a dedicated Post-Quantum team ([pq.ethereum.org](https://pq.ethereum.org)) whose mandate is precisely PQ signature verification via precompiles with migration through account abstraction ([EIP-8141](https://eips.ethereum.org/EIPS/eip-8141)), with fork milestones targeting ~2029. Consequently, **QRB will not build a competing PQ L2**: the project repositions toward contributing to Ethereum's public PQ process and toward the post-quantum confidentiality research line (§7.5), which remains an open gap. See the repository README for details. This document is preserved unchanged as the historical record until v0.3.
+
 > *"All of the internet from the past 40 years will become an open book, and there is nothing you can do to save the past."*
 >
 > — **Gilles Brassard**, co-inventor of quantum cryptography (BB84 protocol, 1984), 2025 ACM A.M. Turing Award (announced March 2026)

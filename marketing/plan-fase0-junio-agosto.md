@@ -1,5 +1,12 @@
 # Plan de Fase 0 — junio en adelante (foco Ethereum Foundation)
 
+> **🛑 SUPERADO (julio de 2026).** El primer paso de este plan (Office Hours de la EF) se
+> ejecutó y obtuvo respuesta el 22 de junio: **no hay encaje de grant ESP** porque el
+> trabajo de precompiles PQ + migración por account abstraction es el mandato activo del
+> equipo Post-Quantum de la propia EF. El plan vigente es
+> [`docs/pivote-pq-publico-julio-2026.md`](../docs/pivote-pq-publico-julio-2026.md).
+> Este documento se conserva como registro histórico.
+
 Hoja de ruta práctica desde mediados de junio de 2026. **Cambio de plan respecto a la
 versión anterior:** el NGI Zero Commons Fund de NLnet **cerró** (junio 2026) y su Open
 Call genérica no reabre hasta **después del verano de 2026**. La vía principal pasa a ser
