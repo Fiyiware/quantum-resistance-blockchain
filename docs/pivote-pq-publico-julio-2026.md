@@ -48,11 +48,20 @@ Mantiene viva la relación con alguien de la EF que ya revisó el PoC.
 ### Paso 2 — Entrar al proceso público (semanas 1-2)
 - Leer a fondo [pq.ethereum.org](https://pq.ethereum.org): roadmap, FAQ y "how to get
   involved". Identificar el workstream de estandarización del precompile de verificación.
-- Localizar las **All Core Devs Post-Quantum breakout calls** (coordinadas por Antonio
-  Sanso): agendas y enlaces en el repo `ethereum/pm` de GitHub y el Discord de Eth R&D.
-  Asistir primero como oyente; presentarse con enlace al repo cuando haya oportunidad.
-- Leer [EIP-8141](https://eips.ethereum.org/EIPS/eip-8141) y su hilo de discusión en
-  Ethereum Magicians — el diseño de smart account PQ de QRB debe mapearse a este EIP.
+- Las llamadas se llaman **"Post Quantum transaction signature (PQTS) Breakout"** y
+  **no requieren inscripción**: son abiertas, quincenales (miércoles 13:00 UTC, ~60 min),
+  facilitadas por Antonio Sanso (`asanso`). Cada llamada tiene un issue en
+  [`ethereum/pm`](https://github.com/ethereum/pm) (ejemplo: [PQTS Breakout #8,
+  issue #2052](https://github.com/ethereum/pm/issues/2052)) donde se publica el enlace;
+  se retransmiten y archivan en YouTube (canal **@EthereumProtocol**). Para seguirlas:
+  "Watch → Custom → Issues" en `ethereum/pm`. Para proponer un punto de agenda: comentar
+  en el issue de la llamada. Discusión continua en el Discord de Eth R&D
+  ([invitación](https://discord.com/invite/VmG7Uxc)) y en
+  [Ethereum Magicians → Protocol Calls](https://ethereum-magicians.org/c/protocol-calls/63).
+- Leer [EIP-8141](https://eips.ethereum.org/EIPS/eip-8141) (estado: Draft, transacciones
+  "frame" tipo 0x06 donde la cuenta define su propio esquema de firma — ahí encaja un
+  smart account ML-DSA) y su [hilo de discusión en Ethereum
+  Magicians](https://ethereum-magicians.org/t/eip-8141-frame-transaction/27617).
 
 ### Paso 3 — Primera contribución concreta (semanas 2-6)
 Convertir los issues abiertos en contribuciones útiles para el proceso público, no solo
@@ -61,8 +70,12 @@ para QRB:
   equipo PQ necesitará para el precompile.
 - **#32** (vectores KAT del NIST en Python y Rust) → suite de interoperabilidad
   reutilizable por cualquier cliente.
-- Revisar los **premios de investigación** publicados en pq.ethereum.org y evaluar si
-  alguno encaja con lo que ya sabemos hacer.
+- Revisar los **premios de investigación** publicados en pq.ethereum.org: son dos,
+  **Poseidon Prize** ($1M, criptoanálisis/endurecimiento del hash Poseidon) y
+  **Proximity Prize** ($1M, investigación en criptografía hash-based). Ambos son
+  investigación criptográfica dura — objetivo realista solo en colaboración con el
+  criptógrafo buscado en el issue #27, no en solitario. La vía de entrada realista para
+  el proyecto es la contribución de ingeniería (benchmarks, KATs), no los premios.
 
 ### Paso 4 — Reposicionar los artefactos públicos (semanas 2-4)
 - README: hecho (sección "Strategic update — July 2026").
