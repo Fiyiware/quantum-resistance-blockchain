@@ -42,6 +42,7 @@ The Phase 0 engineering loses none of its validity — what changed is where it 
 | Account-based blockchain with signed blocks, transactions and state | ✅ Implemented | `prototype/qrb/` |
 | CLI for wallets, transactions, block production and inspection | ✅ Implemented | `prototype/qrb_cli.py` |
 | End-to-end tests (signatures, tampering, double-spend, proposer impersonation) | ✅ Implemented + CI | `prototype/tests/test_basic.py` |
+| NIST ACVP Known-Answer Tests — official FIPS 204 vectors, Python + Rust | ✅ Implemented + CI | `test-vectors/`, `poc/ml-dsa-precompile/tests/` |
 | ML-DSA-65 verification core in Rust (MLDSAVERIFY precompile logic + benchmark) | ✅ Proof of concept + CI | `poc/ml-dsa-precompile/` |
 | MLDSAVERIFY wrapped as a real `revm` precompile, called end-to-end through a full EVM | ✅ Proof of concept + CI | `poc/evm-precompile/` |
 | EVM-compatible execution layer with MLDSAVERIFY precompile (shipped in a Reth fork) | 📐 Designed / Phase 1 | Whitepaper §3.4 |

@@ -58,6 +58,12 @@ jobs:
         working-directory: poc/ml-dsa-precompile
         run: cargo run --release
 
+      - name: ml-dsa-precompile — NIST ACVP Known-Answer Tests + bench compile check
+        working-directory: poc/ml-dsa-precompile
+        run: |
+          cargo test --release
+          cargo bench --no-run
+
       - name: evm-precompile — unit + end-to-end tests
         working-directory: poc/evm-precompile
         run: cargo test --all-targets

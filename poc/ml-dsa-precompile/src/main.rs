@@ -53,7 +53,9 @@ fn main() {
     let pk_bytes = pk.clone().into_bytes();
     assert_eq!(pk_bytes.len(), PK_LEN);
 
-    // 8. Verification benchmark (this number drives the Phase 1 gas model).
+    // 8. Quick verification timing (orientation only — the authoritative,
+    //    statistically sound numbers come from `cargo bench`, see
+    //    benches/mldsa65.rs; the gas model uses those).
     let iters = 2000u32;
     let start = Instant::now();
     let mut acc = 0u64; // keep the optimiser honest

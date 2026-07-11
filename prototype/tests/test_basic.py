@@ -377,6 +377,57 @@ def test_get_block_nonexistent_index_returns_none() -> None:
         assert chain.get_block(-1) is None, "índice negativo debe devolver None"
 
 
+def _load_acvp_vectors(name: str) -> dict:
+    """Carga un archivo de vectores NIST ACVP vendorizado en test-vectors/."""
+    import json
+
+    path = (
+        Path(__file__).resolve().parent.parent.parent
+        / "test-vectors"
+        / "ml-dsa-65"
+        / name
+    )
+    return json.loads(path.read_text())
+
+
+def test_mldsa65_acvp_sigver_vectors() -> None:
+    """dilithium-py debe pasar los vectores sigVer oficiales del NIST (FIPS 204).
+
+    Hasta ahora solo verificábamos firmas que nosotros mismos generábamos —
+    esto prueba interoperabilidad real con el estándar: firmas válidas deben
+    verificar, y firmas/mensajes manipulados (z, hint, commitment, mensaje)
+    deben rechazarse, exactamente como espera cada vector. Issue #32.
+    """
+    from dilithium_py.ml_dsa import ML_DSA_65
+
+    data = _load_acvp_vectors("sigver-external-pure.json")
+    assert len(data["tests"]) == 15, "subconjunto vendorizado incompleto"
+    for t in data["tests"]:
+        got = ML_DSA_65.verify(
+            bytes.fromhex(t["pk"]),
+            bytes.fromhex(t["message"]),
+            bytes.fromhex(t["signature"]),
+            ctx=bytes.fromhex(t["context"]),
+        )
+        assert got == t["testPassed"], (
+            f"ACVP tc {t['tcId']} ({t['reason']}): esperado {t['testPassed']}, "
+            f"obtenido {got}"
+        )
+
+
+def test_mldsa65_acvp_keygen_vectors() -> None:
+    """dilithium-py debe derivar exactamente los pares de claves de los
+    vectores keyGen oficiales del NIST (seed ξ → pk, sk). Issue #32.
+    """
+    from dilithium_py.ml_dsa import ML_DSA_65
+
+    data = _load_acvp_vectors("keygen.json")
+    for t in data["tests"]:
+        pk, sk = ML_DSA_65.key_derive(bytes.fromhex(t["seed"]))
+        assert pk == bytes.fromhex(t["pk"]), f"ACVP keyGen tc {t['tcId']}: pk no coincide"
+        assert sk == bytes.fromhex(t["sk"]), f"ACVP keyGen tc {t['tcId']}: sk no coincide"
+
+
 def run_all() -> None:
     tests = [
         test_dilithium_sign_verify,
@@ -394,6 +445,8 @@ def run_all() -> None:
         test_future_nonce_rejected_in_mempool,
         test_unfunded_sender_rejected_in_mempool,
         test_get_block_nonexistent_index_returns_none,
+        test_mldsa65_acvp_sigver_vectors,
+        test_mldsa65_acvp_keygen_vectors,
     ]
     for t in tests:
         print(f"  -> {t.__name__} ... ", end="", flush=True)
