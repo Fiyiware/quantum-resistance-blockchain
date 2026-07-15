@@ -123,4 +123,3 @@ def is_valid_address(address: str) -> bool:
     except ValueError:
         return False
     return True
-
