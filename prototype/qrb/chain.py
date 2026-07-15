@@ -95,13 +95,9 @@ class Chain:
                 f"Nonce incorrecto: esperaba {expected_nonce}, recibió {tx.nonce}"
             )
         # Comprobación de saldo teniendo en cuenta gastos pendientes.
-        pending_spend = sum(
-            m.amount for m in self.mempool if m.sender == tx.sender
-        )
+        pending_spend = sum(m.amount for m in self.mempool if m.sender == tx.sender)
         if self.state.balance_of(tx.sender) < pending_spend + tx.amount:
-            raise ValueError(
-                f"Saldo insuficiente en {tx.sender} considerando mempool"
-            )
+            raise ValueError(f"Saldo insuficiente en {tx.sender} considerando mempool")
         self.mempool.append(tx)
         self._save()
 

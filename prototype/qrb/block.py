@@ -86,7 +86,9 @@ class Block:
         # atacante podría falsificar la identidad del proposer.
         if address_from_pubkey(self.proposer_pubkey) != self.proposer_address:
             return False
-        if not verify(self.header_payload(), self.proposer_signature, self.proposer_pubkey):
+        if not verify(
+            self.header_payload(), self.proposer_signature, self.proposer_pubkey
+        ):
             return False
         return all(tx.is_valid() for tx in self.transactions)
 
