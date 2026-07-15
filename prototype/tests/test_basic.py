@@ -1,17 +1,15 @@
 """Tests básicos del prototipo QRB.
 
 Ejecutar desde la carpeta prototype/:
-    python -m tests.test_basic
+    pytest
 o:
+    python -m pytest
+o (sin pytest):
     python tests/test_basic.py
 """
 
-import sys
 import tempfile
 from pathlib import Path
-
-# Permite ejecutar como script suelto:
-sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from qrb.block import Block  # noqa: E402
 from qrb.chain import Chain  # noqa: E402
@@ -403,5 +401,11 @@ def run_all() -> None:
 
 
 if __name__ == "__main__":
-    print("Ejecutando tests del prototipo QRB:\n")
-    run_all()
+    try:
+        import pytest as _
+        print("Usa 'pytest' o 'python -m pytest' desde prototype/ para ejecutar los tests.")
+        print()
+        run_all()
+    except ImportError:
+        print("Ejecutando tests del prototipo QRB:\n")
+        run_all()
