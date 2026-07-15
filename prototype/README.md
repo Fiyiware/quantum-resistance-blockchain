@@ -34,6 +34,9 @@ python -m venv .venv
 
 # Instalar dependencias
 pip install -r requirements.txt
+
+# (Opcional) Instalar dependencias de desarrollo (pytest, linters)
+pip install -r dev-requirements.txt
 ```
 
 ## Uso rápido — flujo completo
@@ -74,21 +77,23 @@ python qrb_cli.py chain block --index 1
 Para verificar que todo funciona:
 
 ```bash
+# (Recomendado) Usando pytest:
+pip install -r dev-requirements.txt
+pytest
+
+# O sin pytest:
 python tests/test_basic.py
 ```
 
-Salida esperada:
+Salida esperada (pytest):
 
 ```
-Ejecutando tests del prototipo QRB:
+============================= test session starts =============================
+collected 15 items
 
-  -> test_dilithium_sign_verify ... OK
-  -> test_address_deterministic_and_format ... OK
-  -> test_transaction_sign_verify_tamper ... OK
-  -> test_end_to_end_chain_flow ... OK
-  -> test_double_spend_rejected ... OK
+tests/test_basic.py ............                                       [100%]
 
-Todos los tests pasaron (5/5)
+============================= 15 passed in 0.2s =============================
 ```
 
 ## Estructura del código
