@@ -1,17 +1,11 @@
 """Tests básicos del prototipo QRB.
 
-Ejecutar desde la carpeta prototype/:
-    python -m tests.test_basic
-o:
-    python tests/test_basic.py
+Ejecutar con pytest desde la carpeta prototype/:
+    pytest
 """
 
-import sys
 import tempfile
 from pathlib import Path
-
-# Permite ejecutar como script suelto:
-sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from qrb.block import Block  # noqa: E402
 from qrb.chain import Chain  # noqa: E402
@@ -377,31 +371,3 @@ def test_get_block_nonexistent_index_returns_none() -> None:
         assert chain.get_block(-1) is None, "índice negativo debe devolver None"
 
 
-def run_all() -> None:
-    tests = [
-        test_dilithium_sign_verify,
-        test_address_deterministic_and_format,
-        test_transaction_sign_verify_tamper,
-        test_end_to_end_chain_flow,
-        test_double_spend_rejected,
-        test_block_proposer_pubkey_must_match_address,
-        test_invalid_recipient_address_rejected,
-        test_load_json_corrupt_file_names_the_file,
-        test_load_json_valid_file,
-        test_apply_transaction_rejects_negative_amount,
-        test_apply_transaction_rejects_zero_amount,
-        test_replay_protection_rejects_replayed_transaction,
-        test_future_nonce_rejected_in_mempool,
-        test_unfunded_sender_rejected_in_mempool,
-        test_get_block_nonexistent_index_returns_none,
-    ]
-    for t in tests:
-        print(f"  -> {t.__name__} ... ", end="", flush=True)
-        t()
-        print("OK")
-    print(f"\nTodos los tests pasaron ({len(tests)}/{len(tests)})")
-
-
-if __name__ == "__main__":
-    print("Ejecutando tests del prototipo QRB:\n")
-    run_all()
