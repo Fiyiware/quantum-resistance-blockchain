@@ -47,9 +47,7 @@ def test_address_deterministic_and_format() -> None:
 
 def test_transaction_sign_verify_tamper() -> None:
     w = Wallet.create("alice")
-    tx = Transaction(
-        sender=w.address, recipient="0x" + "ab" * 20, amount=100, nonce=0
-    )
+    tx = Transaction(sender=w.address, recipient="0x" + "ab" * 20, amount=100, nonce=0)
     tx.sign_with(w.public_key, w.private_key)
     assert tx.is_valid(), "transaccion recien firmada no valida"
 
@@ -163,9 +161,9 @@ def test_block_proposer_pubkey_must_match_address() -> None:
     #    correspondencia pubkey-address falla.
     block.proposer_pubkey = impostor.public_key
     block.proposer_signature = sign(block.header_payload(), impostor.private_key)
-    assert not block.is_valid(), (
-        "is_valid debe rechazar bloque con pubkey que no corresponde a proposer_address"
-    )
+    assert (
+        not block.is_valid()
+    ), "is_valid debe rechazar bloque con pubkey que no corresponde a proposer_address"
 
 
 def test_invalid_recipient_address_rejected() -> None:
@@ -274,6 +272,7 @@ def test_apply_transaction_rejects_zero_amount() -> None:
         raise AssertionError("monto cero no rechazado")
     except ValueError as exc:
         assert "positivo" in str(exc), f"rechazado por otra razón: {exc}"
+
 
 def test_replay_protection_rejects_replayed_transaction() -> None:
     sender = Wallet.create("sender")

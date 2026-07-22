@@ -47,9 +47,7 @@ class Transaction:
         Comprueba que la clave pública corresponde al sender declarado.
         """
         if address_from_pubkey(public_key) != self.sender:
-            raise ValueError(
-                "La clave pública no corresponde a la dirección emisora"
-            )
+            raise ValueError("La clave pública no corresponde a la dirección emisora")
         self.public_key = public_key
         self.signature = sign(self.signing_payload(), private_key)
 
