@@ -89,7 +89,7 @@ All tests must pass locally before you open a PR. CI runs the same tests on Pyth
 
 ### Code style
 
-Python: stdlib + `dilithium-py` only for the prototype core. No new dependencies without an issue first. Format with `black` (default config), lint with `ruff` (default config). The CI does not enforce these yet, but it will.
+Python: stdlib + `dilithium-py` only for the prototype core. No new dependencies without an issue first. Format with `black` (default config), lint with `ruff` (default config). CI now enforces both checks on every push and PR.
 
 ### What I will reject
 
