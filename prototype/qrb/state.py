@@ -51,9 +51,7 @@ class WorldState:
         if not tx.is_valid():
             raise ValueError("Firma de transacción inválida")
         if not is_valid_address(tx.recipient):
-            raise ValueError(
-                f"dirección de destinatario inválida: {tx.recipient!r}"
-            )
+            raise ValueError(f"dirección de destinatario inválida: {tx.recipient!r}")
         if tx.amount <= 0:
             raise ValueError(
                 f"el monto debe ser estrictamente positivo, recibido {tx.amount}"
